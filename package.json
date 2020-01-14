@@ -4,7 +4,7 @@
 	"description": "Doge visualizer",
 	"icon": "https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/doge.png",
 	"publisher": "Adonis Stavridis",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.41.0"
 	},

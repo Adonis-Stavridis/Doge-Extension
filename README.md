@@ -1,65 +1,77 @@
-# doge README
+# Doge Visualizer for Visual Studio Code
 
-This is the README for your extension "doge". After writing up a brief description, we recommend including the following sections.
+This is a cosmetic extension to print out popups of your favorite Dogelore characters.
 
-## Features
+## Characters
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Big_Bro
 
-For example if there is an image subfolder under your extension project workspace:
+![Big Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/big_bro.png "Big Bro")
 
-\!\[feature X\]\(images/feature-x.png\)
+### Cheems
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![Cheems](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/cheems.png "Cheems")
 
-## Requirements
+### Doge
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+![Doge](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/doge.png "Doge")
+
+### Isabelle
+
+![Isabelle](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/isabelle.png "Isabelle")
+
+### Karen
+
+![Karen](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/karen.png "Karen")
+
+### Lil_Bro
+
+![Lil Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/lil_bro.png "Lil Bro")
+
+### Milton
+
+![Milton](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/milton.png "Milton")
+
+### Petyr
+
+![Petyr](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/petyr.png "Petyr")
+
+### Quieres
+
+![Quieres](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/quieres.png "Quieres")
+
+### Swagcat
+
+![Swagcat](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/swagcat.png "Swagcat")
+
+### Walter
+
+![Walter](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/walter.png "Walter")
+
+## Installation
+
+[How to install Visual Studio Code extensions](https://code.visualstudio.com/docs/editor/extension-gallery)
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+If needed you can activate the extension by opening the command palette using `Ctrl+Shift+P` on Windows, and `Command+Shift+P` on Mac.
 
-For example:
+Then type the following command: `>Doge`
 
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+This will activate the extension if it wasn't already activated.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+No known issues until now.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+First release.
 
 ### 1.0.0
 
-Initial release of ...
+Initial release
 
-### 1.0.1
+## License
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Licensed under GNU GPL v3.0
