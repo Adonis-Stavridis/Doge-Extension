@@ -16,6 +16,7 @@
 		"Other"
 	],
 	"activationEvents": [
+		"*",
 		"onCommand:extension.doge"
 	],
 	"main": "./extension.js",

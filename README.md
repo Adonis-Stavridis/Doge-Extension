@@ -56,7 +56,9 @@ When hovering above the name of the characters in your code, a popup will appear
 
 ## Extension Settings
 
-If needed you can activate the extension by opening the command palette using `Ctrl+Shift+P` on Windows, and `Command+Shift+P` on Mac.
+The extension is activated automatically at startup.
+
+But, if needed, you can activate the extension by opening the command palette using `Ctrl+Shift+P` on Windows, and `Command+Shift+P` on Mac.
 
 Then type the following command: `>Doge`
 
@@ -70,7 +72,7 @@ No known issues until now.
 
 First release.
 
-### 1.0.0 - Initial release
+## 1.0.0 - Initial release
 
 - First implementation
 - Added Big Bro
