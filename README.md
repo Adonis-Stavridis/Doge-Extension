@@ -1,76 +1,84 @@
-# Doge Visualizer for Visual Studio Code
+# Doge in Visual Studio Code
 
-This is a cosmetic extension to display popups of your favorite Dogelore characters.
+This is a cosmetic extension to add your favorite Dogelore characters into Visual Studio Code.
 
 When hovering above the name of the characters in your code, a popup will appear with his/her image.
 
-# Characters
+---
 
-## Big_Bro
+## Characters
+
+### Big_Bro
 
 ![Big Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/big_bro.png "Big Bro")
 
-## Cheems
+### Cheems
 
 ![Cheems](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/cheems.png "Cheems")
 
-## Doge
+### Doge
 
 ![Doge](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/doge.png "Doge")
 
-## Isabelle
+### Isabelle
 
 ![Isabelle](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/isabelle.png "Isabelle")
 
-## Karen
+### Karen
 
 ![Karen](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/karen.png "Karen")
 
-## Lil_Bro
+### Lil_Bro
 
 ![Lil Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/lil_bro.png "Lil Bro")
 
-## Milton
+### Milton
 
 ![Milton](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/milton.png "Milton")
 
-## Petyr
+### Petyr
 
 ![Petyr](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/petyr.png "Petyr")
 
-## Quieres
+### Quieres
 
 ![Quieres](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/quieres.png "Quieres")
 
-## Swagcat
+### Swagcat
 
 ![Swagcat](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/swagcat.png "Swagcat")
 
-## Walter
+### Walter
 
 ![Walter](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/walter.png "Walter")
 
-# Installation
+---
+
+## Installation
 
 [How to install Visual Studio Code extensions](https://code.visualstudio.com/docs/editor/extension-gallery)
 
-## Extension Settings
+### Extension Settings
 
-The extension is activated automatically at startup.
+The extension is automatically activated at startup.
 
 But, if needed, you can activate the extension by opening the command palette using `Ctrl+Shift+P` on Windows, and `Command+Shift+P` on Mac.
 
 Then type the following command: `>Doge`
 
-This will activate the extension if it wasn't already activated.
+This will activate the extension.
 
-# Known Issues
+---
+
+## Known Issues
 
 No known issues until now.
 
-# Release Notes
+---
 
-## 1.0.0 - Initial release
+## Release Notes
+
+### 1.0.0 - Initial release
 
 - First implementation
 - Added Big Bro
@@ -85,6 +93,8 @@ No known issues until now.
 - Added Swagcat
 - Added Walter
 
-# License
+---
+
+## License
 
 Licensed under GNU GPL v3.0
