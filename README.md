@@ -1,6 +1,6 @@
 # Doge in Visual Studio Code
 
-This is a cosmetic extension to add your favorite Dogelore characters into Visual Studio Code.
+This is a cosmetic extension to add Dogelore characters into Visual Studio Code.
 
 When hovering above the name of the characters in your code, a popup will appear with his/her image.
 
