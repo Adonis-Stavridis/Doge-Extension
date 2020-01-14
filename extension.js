@@ -32,8 +32,8 @@ function activate(context) {
 			const word = document.getText(wordRange);
 
 			const map = {
-				doge: '![Doge](https://raw.githubusercontent.com/Adonis-Stavridis/Breakout/master/images-sons/heart.png "Doge")',
-				cheems: '![Cheems](https://raw.githubusercontent.com/Adonis-Stavridis/Breakout/master/images-sons/heart.png "Cheems")',
+				doge: '![Doge](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/doge.png "Doge")',
+				cheems: '![Cheems](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/cheems.png "Cheems")',
 			};
 
 			var popup = new vscode.Hover(map[word]);
