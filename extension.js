@@ -18,9 +18,7 @@ const characters = {
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-
-	vscode.window.showInformationMessage('Karen release me from Visual Studio Code this instant!');
-
+	
 	let disposable = vscode.commands.registerCommand('extension.doge', function () {
 		vscode.window.showInformationMessage('Karen release me from Visual Studio Code this instant!');
 	});
