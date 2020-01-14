@@ -1,54 +1,56 @@
 # Doge Visualizer for Visual Studio Code
 
-This is a cosmetic extension to print out popups of your favorite Dogelore characters.
+This is a cosmetic extension to display popups of your favorite Dogelore characters.
 
-## Characters
+When hovering above the name of the characters in your code, a popup will appear with his/her image.
 
-### Big_Bro
+# Characters
+
+## Big_Bro
 
 ![Big Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/big_bro.png "Big Bro")
 
-### Cheems
+## Cheems
 
 ![Cheems](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/cheems.png "Cheems")
 
-### Doge
+## Doge
 
 ![Doge](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/doge.png "Doge")
 
-### Isabelle
+## Isabelle
 
 ![Isabelle](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/isabelle.png "Isabelle")
 
-### Karen
+## Karen
 
 ![Karen](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/karen.png "Karen")
 
-### Lil_Bro
+## Lil_Bro
 
 ![Lil Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/lil_bro.png "Lil Bro")
 
-### Milton
+## Milton
 
 ![Milton](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/milton.png "Milton")
 
-### Petyr
+## Petyr
 
 ![Petyr](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/petyr.png "Petyr")
 
-### Quieres
+## Quieres
 
 ![Quieres](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/quieres.png "Quieres")
 
-### Swagcat
+## Swagcat
 
 ![Swagcat](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/swagcat.png "Swagcat")
 
-### Walter
+## Walter
 
 ![Walter](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/walter.png "Walter")
 
-## Installation
+# Installation
 
 [How to install Visual Studio Code extensions](https://code.visualstudio.com/docs/editor/extension-gallery)
 
@@ -60,18 +62,29 @@ Then type the following command: `>Doge`
 
 This will activate the extension if it wasn't already activated.
 
-## Known Issues
+# Known Issues
 
 No known issues until now.
 
-## Release Notes
+# Release Notes
 
 First release.
 
-### 1.0.0
+### 1.0.0 - Initial release
 
-Initial release
+- First implementation
+- Added Big Bro
+- Added Cheems
+- Added Doge
+- Added Isabelle
+- Added Karen
+- Added Lil Bro
+- Added Milton
+- Added Petyr
+- Added Quieres
+- Added Swagcat
+- Added Walter
 
-## License
+# License
 
 Licensed under GNU GPL v3.0
