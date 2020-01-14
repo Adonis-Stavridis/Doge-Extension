@@ -70,8 +70,6 @@ No known issues until now.
 
 # Release Notes
 
-First release.
-
 ## 1.0.0 - Initial release
 
 - First implementation

@@ -1,9 +1,16 @@
 # Change Log
 
-All notable changes to the "doge" extension will be documented in this file.
+## [1.0.0] - Initial release
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [1.0.0]
-
-- Initial release
+- First implementation
+- Added Big Bro
+- Added Cheems
+- Added Doge
+- Added Isabelle
+- Added Karen
+- Added Lil Bro
+- Added Milton
+- Added Petyr
+- Added Quieres
+- Added Swagcat
+- Added Walter
