@@ -1,3 +1,10 @@
+# Default
 node_modules
 .vscode-test/
 *.vsix
+
+# VSCode config file
+*.vscode
+
+# CHANGELOG
+CHANGELOG.md
