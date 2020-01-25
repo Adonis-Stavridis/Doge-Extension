@@ -5,6 +5,7 @@ node_modules
 
 # VSCode config file
 *.vscode
+*.vscodeignore
 
 # CHANGELOG
 CHANGELOG.md
