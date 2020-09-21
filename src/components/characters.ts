@@ -1,6 +1,6 @@
 export const characters: { [key: string]: string } = {
-  bigBro:
-    '![Big Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/bigBro.png "Big Bro")',
+  bigbro:
+    '![BigBro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/bigbro.png "BigBro")',
   cheems:
     '![Cheems](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/cheems.png "Cheems")',
   doge:
@@ -9,8 +9,8 @@ export const characters: { [key: string]: string } = {
     '![Isabelle](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/isabelle.png "Isabelle")',
   karen:
     '![Karen](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/karen.png "Karen")',
-  lilBro:
-    '![Lil Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/lilBro.png "Lil Bro")',
+  lilbro:
+    '![LilBro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/lilbro.png "LilBro")',
   milton:
     '![Milton](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/milton.png "Milton")',
   petyr:

@@ -11,49 +11,47 @@ with his/her image.
 
 ### BigBro
 
-![Big
-Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/big_bro.png "Big Bro")
+![Big Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/bigbro.png "Big Bro")
 
 ### Cheems
 
-![Cheems](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/cheems.png "Cheems")
+![Cheems](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/cheems.png "Cheems")
 
 ### Doge
 
-![Doge](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/doge.png "Doge")
+![Doge](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/doge.png "Doge")
 
 ### Isabelle
 
-![Isabelle](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/isabelle.png "Isabelle")
+![Isabelle](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/isabelle.png "Isabelle")
 
 ### Karen
 
-![Karen](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/karen.png "Karen")
+![Karen](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/karen.png "Karen")
 
 ### LilBro
 
-![Lil
-Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/lil_bro.png "Lil Bro")
+![Lil Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/lilbro.png "Lil Bro")
 
 ### Milton
 
-![Milton](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/milton.png "Milton")
+![Milton](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/milton.png "Milton")
 
 ### Petyr
 
-![Petyr](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/petyr.png "Petyr")
+![Petyr](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/petyr.png "Petyr")
 
 ### Quieres
 
-![Quieres](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/quieres.png "Quieres")
+![Quieres](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/quieres.png "Quieres")
 
 ### Swagcat
 
-![Swagcat](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/swagcat.png "Swagcat")
+![Swagcat](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/swagcat.png "Swagcat")
 
 ### Walter
 
-![Walter](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/walter.png "Walter")
+![Walter](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/walter.png "Walter")
 
 ---
 
