@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.0.1] - Migration to TypeScript
+
+- Code refactoring for TypeScript migration
+
 ## [1.0.0] - Initial release
 
 - First implementation

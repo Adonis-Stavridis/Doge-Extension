@@ -5,6 +5,8 @@ This is a cosmetic extension to add Dogelore characters into Visual Studio Code.
 When hovering above the name of the characters in your code, a popup will appear
 with his/her image.
 
+Inspired by the **[doge](https://atom.io/packages/doge)** Atom package developped by **tyler0706**!
+
 ---
 
 ## Characters
@@ -80,6 +82,10 @@ No known issues until now.
 ---
 
 ## Release Notes
+
+## [1.0.1] - Migration to TypeScript
+
+- Code refactoring for TypeScript migration
 
 ### 1.0.0 - Initial release
 
