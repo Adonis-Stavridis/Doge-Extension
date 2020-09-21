@@ -2,15 +2,17 @@
 
 This is a cosmetic extension to add Dogelore characters into Visual Studio Code.
 
-When hovering above the name of the characters in your code, a popup will appear with his/her image.
+When hovering above the name of the characters in your code, a popup will appear
+with his/her image.
 
 ---
 
 ## Characters
 
-### Big_Bro
+### BigBro
 
-![Big Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/big_bro.png "Big Bro")
+![Big
+Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/big_bro.png "Big Bro")
 
 ### Cheems
 
@@ -28,9 +30,10 @@ When hovering above the name of the characters in your code, a popup will appear
 
 ![Karen](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/karen.png "Karen")
 
-### Lil_Bro
+### LilBro
 
-![Lil Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/lil_bro.png "Lil Bro")
+![Lil
+Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/imgs/lil_bro.png "Lil Bro")
 
 ### Milton
 
@@ -56,13 +59,15 @@ When hovering above the name of the characters in your code, a popup will appear
 
 ## Installation
 
-[How to install Visual Studio Code extensions](https://code.visualstudio.com/docs/editor/extension-gallery)
+[How to install Visual Studio Code
+extensions](https://code.visualstudio.com/docs/editor/extension-gallery)
 
 ### Extension Settings
 
 The extension is automatically activated at startup.
 
-But, if needed, you can activate the extension by opening the command palette using `Ctrl+Shift+P` on Windows, and `Command+Shift+P` on Mac.
+But, if needed, you can activate the extension by opening the command palette
+using `Ctrl+Shift+P` on Windows, and `Command+Shift+P` on Mac.
 
 Then type the following command: `>Doge`
 
@@ -92,9 +97,3 @@ No known issues until now.
 - Added Quieres
 - Added Swagcat
 - Added Walter
-
----
-
-## License
-
-Licensed under GNU GPL v3.0

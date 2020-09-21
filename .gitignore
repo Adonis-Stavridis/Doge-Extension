@@ -1,11 +1,4 @@
-# Default
+out
 node_modules
 .vscode-test/
 *.vsix
-
-# VSCode config file
-*.vscode
-*.vscodeignore
-
-# CHANGELOG
-CHANGELOG.md
