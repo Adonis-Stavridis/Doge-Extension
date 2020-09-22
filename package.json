@@ -2,7 +2,7 @@
   "name": "doge",
   "displayName": "Doge",
   "description": "Doge visualizer",
-  "icon": "src/img/doge.png",
+  "icon": "icon.png",
   "publisher": "Adonis-Stavridis",
   "version": "1.0.3",
   "repository": {
