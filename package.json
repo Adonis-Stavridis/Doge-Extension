@@ -4,7 +4,7 @@
   "description": "Doge visualizer",
   "icon": "src/img/doge.png",
   "publisher": "Adonis-Stavridis",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/Adonis-Stavridis/Doge-Extension"
@@ -30,7 +30,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
+    "compile": "tsc -p ./ && copyfiles -f src/img/* out/img",
     "lint": "eslint src --ext ts",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",

@@ -11,9 +11,17 @@ Inspired by the **[doge](https://atom.io/packages/doge)** Atom package developpe
 
 ## Characters
 
+### Abomination
+
+![Abomination](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/abomination.png "Abomination")
+
 ### BigBro
 
-![Big Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/bigbro.png "Big Bro")
+![BigBro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/bigbro.png "BigBro")
+
+### Caeser
+
+![Caeser](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/caeser.png "Caeser")
 
 ### Cheems
 
@@ -23,29 +31,97 @@ Inspired by the **[doge](https://atom.io/packages/doge)** Atom package developpe
 
 ![Doge](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/doge.png "Doge")
 
+### Dogelas
+
+![Dogelas](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/dogelas.png "Dogelas")
+
+### Engineer
+
+![Engineer](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/engineer.png "Engineer")
+
+### Heavy
+
+![Heavy](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/heavy.png "Heavy")
+
+### Henry
+
+![Henry](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/henry.png "Henry")
+
 ### Isabelle
 
 ![Isabelle](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/isabelle.png "Isabelle")
+
+### Jim
+
+![Jim](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/jim.png "Jim")
 
 ### Karen
 
 ![Karen](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/karen.png "Karen")
 
+### KidDoge
+
+![KidDoge](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/kiddoge.png "KidDoge")
+
+### Kyle
+
+![Kyle](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/kyle.png "Kyle")
+
+### Kylie
+
+![Kylie](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/kylie.png "Kylie")
+
 ### LilBro
 
-![Lil Bro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/lilbro.png "Lil Bro")
+![LilBro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/lilbro.png "LilBro")
+
+### Loafe
+
+![Loafe](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/loafe.png "Loafe")
 
 ### Milton
 
 ![Milton](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/milton.png "Milton")
 
+### Monke
+
+![Monke](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/monke.png "Monke")
+
+### Murphy
+
+![Murphy](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/murphy.png "Murphy")
+
+### Perro
+
+![Perro](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/perro.png "Perro")
+
 ### Petyr
 
 ![Petyr](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/petyr.png "Petyr")
 
-### Quieres
+### Phishe
 
-![Quieres](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/quieres.png "Quieres")
+![Phishe](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/phishe.png "Phishe")
+
+### Phoebe
+
+![Phoebe](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/phoebe.png "Phoebe")
+
+### Rupert
+
+![Rupert](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/rupert.png "Rupert")
+
+### Soldier
+
+![Soldier](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/soldier.png "Soldier")
+
+### Spym
+
+![Spym](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/spym.png "Spym")
+
+### Stuff
+
+![Stuff](https://raw.githubusercontent.com/Adonis-Stavridis/Doge-Extension/master/src/img/stuff.png "Stuff")
 
 ### Swagcat
 
@@ -83,21 +159,34 @@ No known issues until now.
 
 ## Release Notes
 
+## [1.0.3] - Local images
+
+- Images are now locally displayed
+- Allows for them to be viewed offline
+
+## [1.0.2] - New characters
+
+- Added Abomination
+- Added Caeser
+- Added Dogelas
+- Added Engineer
+- Added Heavy
+- Added Henry
+- Added Jim
+- Added KidDoge
+- Added Kyle
+- Added Kylie
+- Added Loafe
+- Added Monke
+- Added Murphy
+- Added Perro (replaced Quieres)
+- Added Phishe
+- Added Phoebe
+- Added Rupert
+- Added Soldier
+- Added Spym
+- Added Stuff
+
 ## [1.0.1] - Migration to TypeScript
 
 - Code refactoring for TypeScript migration
-
-### 1.0.0 - Initial release
-
-- First implementation
-- Added Big Bro
-- Added Cheems
-- Added Doge
-- Added Isabelle
-- Added Karen
-- Added Lil Bro
-- Added Milton
-- Added Petyr
-- Added Quieres
-- Added Swagcat
-- Added Walter

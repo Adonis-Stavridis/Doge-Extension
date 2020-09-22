@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.0.3] - Local images
+
+- Images are now locally displayed
+- Allows for them to be viewed offline
+
 ## [1.0.2] - New characters
 
 - Added Abomination
