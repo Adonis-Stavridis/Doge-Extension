@@ -1,4 +1,4 @@
-export const characters = new Set([
+export const dogeCharacters = new Set([
   "abomination",
   "bigbro",
   "caeser",
@@ -31,6 +31,6 @@ export const characters = new Set([
   "walter"
 ]);
 
-export function characterMarkdown(name: string, path: string) {
+export function dogeCharacterMarkdown(name: string, path: string) {
   return '![' + name + '](' + path + '/out/img/' + name + '.png "' + name + '")';
 }

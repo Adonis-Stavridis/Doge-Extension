@@ -16,14 +16,13 @@
     "Other"
   ],
   "activationEvents": [
-    "*",
-    "onCommand:doge.helloWorld"
+    "*"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "doge.helloWorld",
+        "command": "doge.createMeme",
         "title": "Doge"
       }
     ]
