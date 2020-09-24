@@ -2,40 +2,63 @@ import * as vscode from "vscode";
 import * as path from "path";
 
 var currentPath: string = vscode.workspace.workspaceFolders![0].uri.fsPath;
+var currentFile: string = currentPath;
+
+var memeFile: string = currentPath + "/dogeMeme.html";
 
 export function dogeMeme(): void {
   if (!checks()) {
     return;
   }
 
-  const currentFile: string = path.basename(vscode.window.activeTextEditor!.document.fileName, ".json");
+  createFile(currentPath, currentFile);
 
-  const memeName = vscode.Uri.parse(currentPath + "/" + currentFile + ".html");
+  var inputText = readInputFile(currentFile);
 
-  const memeFile = new vscode.WorkspaceEdit();
-  memeFile.createFile(memeName, { overwrite: true });
-
-  vscode.workspace.applyEdit(memeFile);
+  inputText.then((value) => {
+    writeOutputFile(memeFile, value);
+  });
 }
 
 function checks(): boolean {
   var editor = vscode.window.activeTextEditor;
 
   if (!editor) {
-    vscode.window.showWarningMessage('No active Editor!');
+    vscode.window.showErrorMessage('Doge: No active Editor!');
     return false;
   }
 
-  var uri = editor.document.uri;
-  var filename = uri.fsPath;
+  var filename = editor.document.fileName;
   var ext = path.extname(filename);
 
-  currentPath = path.dirname(filename);
-
   if (ext !== ".json") {
-    vscode.window.showWarningMessage('File needs to be a .json file!');
+    vscode.window.showErrorMessage('Doge: File needs to be a .json file!');
     return false;
   }
 
+  currentPath = path.dirname(filename);
+  currentFile = filename;
+
   return true;
+}
+
+function createFile(rootPath: string, filename: string): void {
+  memeFile = rootPath + "/" + path.basename(filename, '.json') + ".html";
+
+  const memeName = vscode.Uri.parse(memeFile);
+
+  const memeEdit = new vscode.WorkspaceEdit();
+  memeEdit.createFile(memeName, { overwrite: true });
+
+  vscode.workspace.applyEdit(memeEdit);
+}
+
+function readInputFile(filename: string): Thenable<Uint8Array> {
+  const fileUri = vscode.Uri.parse(filename);
+  return vscode.workspace.fs.readFile(fileUri);
+}
+
+function writeOutputFile(filename: string, content: Uint8Array): void {
+  const fileUri = vscode.Uri.parse(filename);
+  vscode.workspace.fs.writeFile(fileUri, content);
 }
