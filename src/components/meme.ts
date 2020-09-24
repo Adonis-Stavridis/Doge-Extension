@@ -17,6 +17,7 @@ export function dogeMeme(): void {
 
   inputText.then((value) => {
     writeOutputFile(memeFile, value);
+    openOutputFile(memeFile);
   });
 }
 
@@ -24,7 +25,7 @@ function checks(): boolean {
   var editor = vscode.window.activeTextEditor;
 
   if (!editor) {
-    vscode.window.showErrorMessage('Doge: No active Editor!');
+    vscode.window.showErrorMessage('Doge : No active Editor!');
     return false;
   }
 
@@ -32,7 +33,7 @@ function checks(): boolean {
   var ext = path.extname(filename);
 
   if (ext !== ".json") {
-    vscode.window.showErrorMessage('Doge: File needs to be a .json file!');
+    vscode.window.showErrorMessage('Doge : File needs to be a .json file!');
     return false;
   }
 
@@ -61,4 +62,11 @@ function readInputFile(filename: string): Thenable<Uint8Array> {
 function writeOutputFile(filename: string, content: Uint8Array): void {
   const fileUri = vscode.Uri.parse(filename);
   vscode.workspace.fs.writeFile(fileUri, content);
+}
+
+function openOutputFile(filename: string): void {
+  const fileUri = vscode.Uri.parse(filename);
+  if (!vscode.env.openExternal(fileUri)) {
+    vscode.window.showWarningMessage('Doge : Could not open browser window!');
+  }
 }
