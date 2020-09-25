@@ -7,16 +7,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#282828" />
   <meta name="description" content="VS Code Doge Extension!" />
-  <meta name="keywords" content="VS Code,Doge,Meme">
-  <meta name="author" content="Adonis Stavridis">
+  <meta name="keywords" content="VS Code,Doge,Meme" />
+  <meta name="author" content="Adonis Stavridis" />
+  <link rel="stylesheet" href="./app/doge.css" />
   <title>Doge Meme</title>
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root">
-    <h1>Hello World!</h1>
+  <div id="root" class="app">
+    <div class="appcontainer">
+
+      <div class="memecontainer">
+        <canvas class="meme"></canvas>
+      </div>
+
+      <div class="editorcontainer">
+        <table className="contactInfo">
+          <thead>
+            <tr>
+              <th>Images</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="imagesArray">
+              <!-- Loaded images -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   </div>
+
+  <script src="./app/doge.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 
 </html>

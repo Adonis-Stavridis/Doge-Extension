@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import { dogeCharacters, dogeCharacterMarkdown } from "./characters";
-
-const extPath: string = vscode.extensions.getExtension("adonis-stavridis.doge")!.extensionPath;
+import { extPath } from "./extpaths";
 
 export function dogeHoverProvider() {
   vscode.languages.registerHoverProvider("*", {
