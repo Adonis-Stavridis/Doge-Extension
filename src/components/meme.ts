@@ -1,7 +1,8 @@
 import * as vscode from "vscode";
 import * as path from "path";
 
-import { extPath } from "./extpaths";
+import { extPath } from "./extpath";
+import { read } from "fs";
 
 // GLOBAL VARIABLES
 var currentPath: string = vscode.workspace.workspaceFolders![0].uri.fsPath;
@@ -9,20 +10,26 @@ var currentFile: string = currentPath;
 var memeFile: string = currentPath + "/.dogeapp/doge.html";
 
 // EXPORT FUNCTION
-export function dogeMeme(): void {
+export async function dogeMeme(): Promise<void> {
+  var flag: boolean = true;
+
   if (!checks()) {
     return;
   }
 
-  copyTemplate().then(() => {
-    openOutputFile();
-  });
+  flag = await copyTemplate();
+  if (!flag) {
+    return;
+  }
 
-  readImages().then((value) => {
-    // for (let key in value) {
-    //   console.log(key, value[key]);
-    // }
-  });
+  flag = await readImages();
+  if (!flag) {
+    return;
+  }
+
+  if (!openOutputFile()) {
+    return;
+  }
 }
 
 // FUNCTIONS
@@ -53,24 +60,46 @@ function checks(): boolean {
   return true;
 }
 
-function copyTemplate(): Thenable<void> {
-  const inputFilename = path.basename(currentFile, '.json');
-
+async function copyTemplate(): Promise<boolean> {
   const templateUri: vscode.Uri = vscode.Uri.parse(extPath + "/out/template");
   const currentPathUri: vscode.Uri = vscode.Uri.parse(currentPath + "/.dogeapp");
 
-  return vscode.workspace.fs.copy(templateUri, currentPathUri, { overwrite: true });
+  try {
+    await vscode.workspace.fs.copy(templateUri, currentPathUri, { overwrite: true });
+  } catch {
+    vscode.window.showErrorMessage('Doge : An error (id: 01) within the extension occured! Create an issue on the GitHub repository : https://github.com/Adonis-Stavridis/Doge-Extension/issues');
+    return false;
+  }
+
+  return true;
 }
 
-function openOutputFile(): void {
+async function readImages(): Promise<boolean> {
+  const imgFolder = currentPath + "/img";
+  const folderUri = vscode.Uri.parse(imgFolder);
+
+  var readDir;
+
+  try {
+    readDir = await vscode.workspace.fs.readDirectory(folderUri);
+  } catch {
+    vscode.window.showErrorMessage('Doge : img folder not found!');
+    return false;
+  }
+
+  for (let val in readDir) {
+    console.log(readDir[val][0]);
+  }
+
+  return true;
+}
+
+function openOutputFile(): boolean {
   const fileUri = vscode.Uri.parse(memeFile);
   if (!vscode.env.openExternal(fileUri)) {
     vscode.window.showWarningMessage('Doge : Could not open browser window!');
+    return false;
   }
-}
 
-function readImages(): Thenable<[string, vscode.FileType][]> {
-  const imgFolder = currentPath + "/img";
-  const folderUri = vscode.Uri.parse(imgFolder);
-  return vscode.workspace.fs.readDirectory(folderUri);
+  return true;
 }

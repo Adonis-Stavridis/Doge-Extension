@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { dogeCharacters, dogeCharacterMarkdown } from "./characters";
-import { extPath } from "./extpaths";
+import { extPath } from "./extpath";
 
 export function dogeHoverProvider() {
   vscode.languages.registerHoverProvider("*", {

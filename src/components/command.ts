@@ -5,10 +5,10 @@ import { dogeMeme } from "./meme";
 
 export let dogeCommandID = "doge.createMeme";
 
-export function dogeCommand(context: vscode.ExtensionContext) {
-  let command = vscode.commands.registerCommand(dogeCommandID, () => {
+export async function dogeCommand(context: vscode.ExtensionContext) {
+  let command = vscode.commands.registerCommand(dogeCommandID, async function () {
     dogeUpdateStatusBarItem(true);
-    dogeMeme();
+    await dogeMeme();
     dogeUpdateStatusBarItem(false);
   });
 
