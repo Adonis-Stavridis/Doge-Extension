@@ -2,7 +2,6 @@ import * as vscode from "vscode";
 import * as path from "path";
 
 import { extPath } from "./extpath";
-import { read } from "fs";
 
 // GLOBAL VARIABLES
 var currentPath: string = vscode.workspace.workspaceFolders![0].uri.fsPath;
@@ -67,7 +66,7 @@ async function copyTemplate(): Promise<boolean> {
   try {
     await vscode.workspace.fs.copy(templateUri, currentPathUri, { overwrite: true });
   } catch {
-    vscode.window.showErrorMessage('Doge : An error (id: 01) within the extension occured! Create an issue on the GitHub repository : https://github.com/Adonis-Stavridis/Doge-Extension/issues');
+    vscode.window.showErrorMessage('Doge : An error (id : 01) within the extension occured! Create an issue on the [GitHub repository](https://github.com/Adonis-Stavridis/Doge-Extension/issues/new?title=Doge%20:%20An%20error%20%28id%20:%2001%29%20within%20the%20extension%20occured!)!');
     return false;
   }
 
