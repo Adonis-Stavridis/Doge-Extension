@@ -1,16 +1,16 @@
-var imgPath = "../img/";
-var images = [];
+// var imgPath = "../img/";
+// var images = [];
 
-$(document).ready(function () {
-  readImages();
-  // loadImages();
-});
+// $(document).ready(function () {
+//   readImages();
+//   // loadImages();
+// });
 
-$(function readImages() {
-  // images = fs.readdirSync(imgPath);
-  console.log(images);
-});
+// $(function readImages() {
+//   // images = fs.readdirSync(imgPath);
+//   console.log(images);
+// });
 
-$(function loadImages() {
+// $(function loadImages() {
 
-});
+// });

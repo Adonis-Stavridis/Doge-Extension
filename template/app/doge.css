@@ -27,7 +27,7 @@ body {
 }
 
 .memecontainer {
-  flex: 60%;
+  flex: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,25 +40,54 @@ body {
 }
 
 .editorcontainer {
-  padding: 1em;
-  flex: 40%;
+  padding: 0.5em;
+  flex: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.imagesDiv {
+.imagesContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  max-height: 20%;
+}
+
+.userImagesDiv {
+  margin-right: 0.2em;
   padding: 0.5em;
   border: 2px solid cyan;
   border-radius: 0.2em;
-  max-width: 100%;
-  min-width: 100%;
-  max-height: 25%;
+  width: 45%;
+  height: 100%;
   overflow: auto;
 }
 
-.imagesDiv img {
+.userImagesDiv img {
+  margin: 0.25em;
+  max-width: 3em;
+  max-height: 3em;
+}
+
+.userImagesDiv p {
+  text-align: center;
+}
+
+.defaultImagesDiv {
+  margin-left: 0.2em;
+  padding: 0.5em;
+  border: 2px solid tomato;
+  border-radius: 0.2em;
+  width: 45%;
+  height: 100%;
+  overflow: auto;
+}
+
+.defaultImagesDiv img {
   margin: 0.25em;
   max-width: 3em;
   max-height: 3em;
