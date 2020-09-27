@@ -10,6 +10,7 @@
   <meta name="keywords" content="VS Code,Doge,Meme" />
   <meta name="author" content="Adonis Stavridis" />
   <link rel="stylesheet" href="./app/doge.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet" media="all">
   <title>Doge Meme</title>
 </head>
 
@@ -18,7 +19,8 @@
   <div id="root" class="app">
     <div class="appcontainer">
       <div class="memecontainer">
-        <canvas class="meme"></canvas>
+        <canvas class="meme" id="memeCanvas"></canvas>
+        <button class="renderButton">Export<i class="fas fa-download buttonIcon"></i></button>
       </div>
 
       <div class="editorcontainer">
@@ -66,8 +68,8 @@
     </div>
   </div>
 
-  <script src="./app/doge.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./app/doge.js"></script>
 </body>
 
 </html>

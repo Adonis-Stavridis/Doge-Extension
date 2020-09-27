@@ -31,12 +31,57 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .meme {
   border: 0.05em solid gold;
   width: 80%;
   height: 70%;
+}
+
+.renderButton {
+  margin: 1em;
+  padding: 1em 2em;
+  background-color: #585858;
+  border: 0.1em solid gold;
+  border-radius: 1em;
+  color: snow;
+  font-weight: bold;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color;
+  transition-property: color;
+}
+
+.buttonIcon {
+  max-width: 1em;
+  max-height: 1em;
+  margin-left: 1em;
+  color: snow;
+}
+
+.renderButton .buttonIcon {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color;
+  transition-property: color;
+}
+
+.renderButton:hover,
+.renderButton:focus,
+.renderButton:active,
+.renderButton:hover .buttonIcon,
+.renderButton:focus .buttonIcon,
+.renderButton:active .buttonIcon {
+  color: gold;
 }
 
 .editorcontainer {
