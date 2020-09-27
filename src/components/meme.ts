@@ -3,11 +3,12 @@ import * as path from "path";
 
 import { extPath } from "./extpath";
 import { getImages, imagesToHTML } from "./images";
+import { start } from "repl";
 
 // GLOBAL VARIABLES
 var currentPath: string = vscode.workspace.workspaceFolders![0].uri.fsPath;
-var currentFile: string = currentPath;
 var memeFile: string = currentPath + "/.dogeapp/doge.html";
+var addedLines: number = 0;
 
 // EXPORT FUNCTION
 export async function dogeMeme(): Promise<void> {
@@ -27,15 +28,12 @@ export async function dogeMeme(): Promise<void> {
     return;
   }
 
-  if (!openOutputFile()) {
-    return;
-  }
+  setTimeout(openOutputFile, 1000);
 }
 
 // FUNCTIONS
 function updatePaths(filename: string) {
   currentPath = path.dirname(filename);
-  currentFile = filename;
   memeFile = currentPath + "/.dogeapp/doge.html";
 }
 
@@ -64,11 +62,25 @@ async function copyTemplate(): Promise<boolean> {
   const templateUri: vscode.Uri = vscode.Uri.parse(extPath + "/out/template");
   const currentPathUri: vscode.Uri = vscode.Uri.parse(currentPath + "/.dogeapp");
 
+  let copy = async function () {
+    try {
+      await vscode.workspace.fs.copy(templateUri, currentPathUri, { overwrite: true });
+    } catch {
+      vscode.window.showErrorMessage('Doge : An error (id : 01) within the extension occured! Create an [issue](https://github.com/Adonis-Stavridis/Doge-Extension/issues/new?title=Doge%20:%20An%20error%20%28id%20:%2001%29%20within%20the%20extension%20occured!) on the GitHub repository!');
+      return false;
+    }
+
+    return true;
+  };
+
   try {
-    await vscode.workspace.fs.copy(templateUri, currentPathUri, { overwrite: true });
+    await vscode.workspace.fs.stat(currentPathUri);
   } catch {
-    vscode.window.showErrorMessage('Doge : An error (id : 01) within the extension occured! Create an [issue](https://github.com/Adonis-Stavridis/Doge-Extension/issues/new?title=Doge%20:%20An%20error%20%28id%20:%2001%29%20within%20the%20extension%20occured!) on the GitHub repository!');
-    return false;
+    return copy();
+  }
+
+  if (addedLines === 0) {
+    return copy();
   }
 
   return true;
@@ -87,20 +99,30 @@ async function placeImages(): Promise<boolean> {
     return false;
   }
 
-  var images: Array<string> = getImages(readDir);
+  const images: Array<string> = getImages(readDir);
   if (!images || images.length === 0) {
     vscode.window.showErrorMessage('Doge : No images in /img folder found!');
     return false;
   }
 
-  var htmlCode: string = imagesToHTML(images);
+  const htmlCode: string = imagesToHTML(images);
 
-  var memeFileUri: vscode.Uri = vscode.Uri.parse(memeFile);
-  var insertPosition: vscode.Position = new vscode.Position(33, 37);
-  var insertImages: vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
-  insertImages.insert(memeFileUri, insertPosition, htmlCode);
+  const startPosition: number = 27;
+  const memeFileUri: vscode.Uri = vscode.Uri.parse(memeFile);
+  const insertPosition: vscode.Position = new vscode.Position(startPosition, 0);
+  const addImages: vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
 
-  if (!vscode.workspace.applyEdit(insertImages)) {
+  if (addedLines === 0) {
+    addImages.insert(memeFileUri, insertPosition, htmlCode);
+  } else {
+    const rangePosition: vscode.Position = new vscode.Position(startPosition + addedLines, 0);
+    const replaceRange: vscode.Range = new vscode.Range(insertPosition, rangePosition);
+    addImages.replace(memeFileUri, replaceRange, htmlCode);
+  }
+
+  addedLines = images.length;
+
+  if (!vscode.workspace.applyEdit(addImages)) {
     vscode.window.showErrorMessage('Doge : An error (id : 03) within the extension occured! Create an [issue](https://github.com/Adonis-Stavridis/Doge-Extension/issues/new?title=Doge%20:%20An%20error%20%28id%20:%2003%29%20within%20the%20extension%20occured!) on the GitHub repository!');
     return false;
   }
@@ -122,4 +144,3 @@ function openOutputFile(): boolean {
 
   return true;
 }
-

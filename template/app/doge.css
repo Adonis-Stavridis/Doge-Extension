@@ -40,12 +40,26 @@ body {
 }
 
 .editorcontainer {
+  padding: 1em;
   flex: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-.editor {
-  
+.imagesDiv {
+  padding: 0.5em;
+  border: 2px solid cyan;
+  border-radius: 0.2em;
+  max-width: 100%;
+  min-width: 100%;
+  max-height: 25%;
+  overflow: auto;
+}
+
+.imagesDiv img {
+  margin: 0.25em;
+  max-width: 3em;
+  max-height: 3em;
 }
