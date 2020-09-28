@@ -159,25 +159,27 @@ body {
 }
 
 .imageEdit img {
-  margin-left: 1em;
+  margin-left: 0.5em;
   margin-right: auto;
   width: fit-content;
   max-height: 2em;
+  max-width: 4em;
+  overflow: hidden;
   float: left;
 }
 
 .imageEdit span {
-  margin-left: 0.5em;
-  margin-right: 0.5em;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
   font-size: calc(10px + 1.5vmin);
 }
 
 .imageEdit input {
   min-width: 2em;
-  max-width: 5em;
-  margin-right: 0.4em;
+  max-width: 3.5em;
+  margin-right: 0.2em;
   padding: 0.5em;
-  border: 0.2em solid gold;
+  border: 0.1em solid gold;
   border-radius: 0.5em;
   background-color: #282828;
   color: snow;
@@ -204,6 +206,27 @@ body {
   -moz-appearance: textfield;
 }
 
+.imageEdit button {
+  padding: 0.5em;
+  background-color: #282828;
+  color: aquamarine;
+  border: 0.2em solid aquamarine;
+  border-radius: 0.5em;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-property: color;
+  transition-property: color;
+}
+
+.imageEdit button:hover,
+.imageEdit button:focus,
+.imageEdit button:active {
+  background-color: aquamarine;
+  color: #282828;
+}
+
 .imageEdit i {
   padding: 0.5em;
   background-color: transparent;
@@ -218,13 +241,4 @@ body {
 .imageEdit i:focus,
 .imageEdit i:active {
   color: tomato;
-}
-
-.imageEdit i.hide {
-  color: tomato;
-}
-
-.imageEdit i.hide:focus,
-.imageEdit i.hide:active {
-  color: snow;
 }

@@ -40,12 +40,8 @@ $(document).ready(function () {
     };
   }
 
-  $("#hideButton").click(function () {
-    const hideClass = $(this).attr('class');
-    if (hideClass.includes("hide")) {
-      $(this).removeClass('hide');
-    } else {
-      $(this).addClass('hide');
-    }
+  // TODO : addEvent procedurally
+  $(".imagesEdit i").click(function () {
+    $(this).parent().remove();
   });
 });
