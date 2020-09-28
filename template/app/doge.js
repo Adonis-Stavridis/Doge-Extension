@@ -1,12 +1,24 @@
 $(document).ready(function () {
 
+  const canvas = document.getElementById("memeCanvas");
+  const context = canvas.getContext('2d');
+
+  context.canvas.width = canvas.width;
+  context.canvas.height = canvas.height;
+
+  $(window).resize(function () {
+    const canvasElement = document.getElementById("memeCanvas");
+    context.canvas.width = canvasElement.width;
+    context.canvas.height = canvasElement.height;
+  });
+
   $(".imagesContainer img").click(function () {
     const imgSrc = $(this).attr('src');
     addToCanvas(imgSrc);
   });
 
   $(".renderButton").click(function () {
-    const canvasElement = document.getElementById('memeCanvas');
+    const canvasElement = document.getElementById("memeCanvas");
     const MIME_TYPE = "image/png";
     const imgURL = canvasElement.toDataURL(MIME_TYPE);
 
@@ -21,13 +33,19 @@ $(document).ready(function () {
   });
 
   function addToCanvas(imgSrc) {
-    const canvas = document.getElementById('memeCanvas');
-    const context = canvas.getContext('2d');
-
     newImage = new Image();
     newImage.src = imgSrc;
     newImage.onload = function () {
       context.drawImage(newImage, 0, 0);
     };
   }
+
+  $("#hideButton").click(function () {
+    const hideClass = $(this).attr('class');
+    if (hideClass.includes("hide")) {
+      $(this).removeClass('hide');
+    } else {
+      $(this).addClass('hide');
+    }
+  });
 });

@@ -32,6 +32,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  min-width: 35%;
 }
 
 .meme {
@@ -91,6 +92,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  min-width: 45%;
 }
 
 .imagesContainer {
@@ -136,4 +138,91 @@ body {
   margin: 0.25em;
   max-width: 3em;
   max-height: 3em;
+}
+
+.imagesEditContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.imageEdit {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  max-height: 2em;
+  border-left: 0.2em solid aquamarine;
+  background-color: #484848;
+}
+
+.imageEdit img {
+  margin-left: 1em;
+  margin-right: auto;
+  max-height: 2em;
+  float: left;
+}
+
+.imageEdit span {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  font-size: calc(10px + 1.5vmin);
+}
+
+.imageEdit input {
+  max-width: 2em;
+  margin-right: 0.4em;
+  padding: 0.5em;
+  border: 0.2em solid gold;
+  border-radius: 0.5em;
+  background-color: #282828;
+  color: snow;
+  text-align: center;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: background-color;
+  transition-property: background-color;
+}
+
+.imageEdit input:hover,
+.imageEdit input:focus,
+.imageEdit input:active {
+  background-color: #585858;
+}
+
+.imageEdit input::-webkit-outer-spin-button,
+.imageEdit input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.imageEdit input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.imageEdit i {
+  padding: 0.5em;
+  background-color: transparent;
+  border: none;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color;
+  transition-property: color;
+}
+
+.imageEdit i:hover,
+.imageEdit i:focus,
+.imageEdit i:active {
+  color: tomato;
+}
+
+.imageEdit i.hide {
+  color: tomato;
+}
+
+.imageEdit i.hide:focus,
+.imageEdit i.hide:active {
+  color: snow;
 }
