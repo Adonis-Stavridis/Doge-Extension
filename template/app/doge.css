@@ -161,6 +161,7 @@ body {
 .imageEdit img {
   margin-left: 1em;
   margin-right: auto;
+  width: fit-content;
   max-height: 2em;
   float: left;
 }
@@ -172,7 +173,8 @@ body {
 }
 
 .imageEdit input {
-  max-width: 2em;
+  min-width: 2em;
+  max-width: 5em;
   margin-right: 0.4em;
   padding: 0.5em;
   border: 0.2em solid gold;
