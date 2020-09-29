@@ -142,20 +142,39 @@ body {
 
 .imagesEditContainer {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
+  height: 40%;
+  max-height: 40%;
+  overflow: auto;
 }
 
 .imageEdit {
+  margin-bottom: 0.1em;
+  padding: 0.1em;
   display: flex;
   align-items: center;
   flex-direction: row;
-  width: 100%;
+  width: 98%;
   max-height: 2em;
-  border-left: 0.2em solid aquamarine;
   background-color: #484848;
+}
+
+.imageEdit:nth-child(4n + 1) {
+  border-left: 0.2em solid tomato;
+}
+
+.imageEdit:nth-child(4n + 2) {
+  border-left: 0.2em solid orange;
+}
+
+.imageEdit:nth-child(4n + 3) {
+  border-left: 0.2em solid mediumseagreen;
+}
+
+.imageEdit:nth-child(4n + 4) {
+  border-left: 0.2em solid dodgerblue;
 }
 
 .imageEdit img {
@@ -171,12 +190,12 @@ body {
 .imageEdit span {
   margin-left: 0.2em;
   margin-right: 0.2em;
-  font-size: calc(10px + 1.5vmin);
+  font-size: calc(10px + 1vmin);
 }
 
 .imageEdit input {
-  min-width: 2em;
-  max-width: 3.5em;
+  min-width: 1.5em;
+  max-width: 2em;
   margin-right: 0.2em;
   padding: 0.5em;
   border: 0.1em solid gold;

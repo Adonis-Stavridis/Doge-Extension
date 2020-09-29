@@ -1,94 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./app/doge.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#282828" />
+    <meta name="description" content="VS Code Doge Extension!" />
+    <meta name="keywords" content="VS Code,Doge,Meme" />
+    <meta name="author" content="Adonis Stavridis" />
+    <link rel="stylesheet" href="./app/doge.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      rel="stylesheet"
+      media="all"
+    />
+    <title>Doge Meme</title>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="./app/doge.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#282828" />
-  <meta name="description" content="VS Code Doge Extension!" />
-  <meta name="keywords" content="VS Code,Doge,Meme" />
-  <meta name="author" content="Adonis Stavridis" />
-  <link rel="stylesheet" href="./app/doge.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet" media="all">
-  <title>Doge Meme</title>
-</head>
-
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root" class="app">
-    <div class="appcontainer">
-      <div class="memecontainer">
-        <canvas class="meme" id="memeCanvas"></canvas>
-        <button class="renderButton">Export<i class="fas fa-download buttonIcon"></i></button>
-      </div>
-
-      <div class="editorcontainer">
-        <h2>Images</h2>
-        <div class="imagesContainer">
-          <div class="userImagesDiv">
-            <!-- Images -->
-            <p>No user images</p>
-            <!-- End -->
-          </div>
-          <div class="defaultImagesDiv">
-            <img src="./app/img/abomination.png" alt="abomination.png">
-            <img src="./app/img/bigbro.png" alt="bigbro.png">
-            <img src="./app/img/caeser.png" alt="caeser.png">
-            <img src="./app/img/cheems.png" alt="cheems.png">
-            <img src="./app/img/doge.png" alt="doge.png">
-            <img src="./app/img/dogelas.png" alt="dogelas.png">
-            <img src="./app/img/engineer.png" alt="engineer.png">
-            <img src="./app/img/heavy.png" alt="heavy.png">
-            <img src="./app/img/henry.png" alt="henry.png">
-            <img src="./app/img/isabelle.png" alt="isabelle.png">
-            <img src="./app/img/jim.png" alt="jim.png">
-            <img src="./app/img/karen.png" alt="karen.png">
-            <img src="./app/img/kiddoge.png" alt="kiddoge.png">
-            <img src="./app/img/kyle.png" alt="kyle.png">
-            <img src="./app/img/kylie.png" alt="kylie.png">
-            <img src="./app/img/lilbro.png" alt="lilbro.png">
-            <img src="./app/img/loafe.png" alt="loafe.png">
-            <img src="./app/img/milton.png" alt="milton.png">
-            <img src="./app/img/monke.png" alt="monke.png">
-            <img src="./app/img/murphy.png" alt="murphy.png">
-            <img src="./app/img/perro.png" alt="perro.png">
-            <img src="./app/img/petyr.png" alt="petyr.png">
-            <img src="./app/img/phishe.png" alt="phishe.png">
-            <img src="./app/img/phoebe.png" alt="phoebe.png">
-            <img src="./app/img/rupert.png" alt="rupert.png">
-            <img src="./app/img/soldier.png" alt="soldier.png">
-            <img src="./app/img/spym.png" alt="spym.png">
-            <img src="./app/img/stuff.png" alt="stuff.png">
-            <img src="./app/img/swagcat.png" alt="swagcat.png">
-            <img src="./app/img/walter.png" alt="walter.png">
-          </div>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root" class="app">
+      <div class="appcontainer">
+        <div class="memecontainer">
+          <canvas class="meme" id="memeCanvas"></canvas>
+          <button class="renderButton">
+            Export<i class="fas fa-download buttonIcon"></i>
+          </button>
         </div>
-        <h2>Images Edit</h2>
-        <div class="imagesEditContainer">
-          <!-- Images Edit Info -->
-          <div class="imageEdit">
-            <img src="./app/img/abomination.png" alt="abomination.png">
-            <span>Position: </span>
-            <input type="number" name="img1posw" id="posw" placeholder="horizontal">
-            <input type="number" name="img1posh" id="posh" placeholder="vertical">
-            <span>Size: </span>
-            <input type="number" name="img1width" id="width" placeholder="width">
-            <input type="number" name="img1height" id="height" placeholder="height">
-            <span>Rotation: </span>
-            <input type="number" name="img1rot" id="rotation" placeholder="rotation">
-            <button class="flipButton">Flip</button>
-            <span>Layer: </span>
-            <input type="number" name="img1layer" id="layer" placeholder="layer">
-            <i class="fas fa-trash" id="removeImage"></i>
+
+        <div class="editorcontainer">
+          <h2>Images</h2>
+          <div class="imagesContainer">
+            <div class="userImagesDiv">
+              <!-- Images -->
+              <p>No user images</p>
+              <!-- End -->
+            </div>
+            <div class="defaultImagesDiv">
+              <img src="./app/img/abomination.png" alt="abomination.png" />
+              <img src="./app/img/bigbro.png" alt="bigbro.png" />
+              <img src="./app/img/caeser.png" alt="caeser.png" />
+              <img src="./app/img/cheems.png" alt="cheems.png" />
+              <img src="./app/img/doge.png" alt="doge.png" />
+              <img src="./app/img/dogelas.png" alt="dogelas.png" />
+              <img src="./app/img/engineer.png" alt="engineer.png" />
+              <img src="./app/img/heavy.png" alt="heavy.png" />
+              <img src="./app/img/henry.png" alt="henry.png" />
+              <img src="./app/img/isabelle.png" alt="isabelle.png" />
+              <img src="./app/img/jim.png" alt="jim.png" />
+              <img src="./app/img/karen.png" alt="karen.png" />
+              <img src="./app/img/kiddoge.png" alt="kiddoge.png" />
+              <img src="./app/img/kyle.png" alt="kyle.png" />
+              <img src="./app/img/kylie.png" alt="kylie.png" />
+              <img src="./app/img/lilbro.png" alt="lilbro.png" />
+              <img src="./app/img/loafe.png" alt="loafe.png" />
+              <img src="./app/img/milton.png" alt="milton.png" />
+              <img src="./app/img/monke.png" alt="monke.png" />
+              <img src="./app/img/murphy.png" alt="murphy.png" />
+              <img src="./app/img/perro.png" alt="perro.png" />
+              <img src="./app/img/petyr.png" alt="petyr.png" />
+              <img src="./app/img/phishe.png" alt="phishe.png" />
+              <img src="./app/img/phoebe.png" alt="phoebe.png" />
+              <img src="./app/img/rupert.png" alt="rupert.png" />
+              <img src="./app/img/soldier.png" alt="soldier.png" />
+              <img src="./app/img/spym.png" alt="spym.png" />
+              <img src="./app/img/stuff.png" alt="stuff.png" />
+              <img src="./app/img/swagcat.png" alt="swagcat.png" />
+              <img src="./app/img/walter.png" alt="walter.png" />
+            </div>
+          </div>
+
+          <h2>Images Edit</h2>
+          <div id="imagesEditContainer" class="imagesEditContainer">
+            <!-- Images Edit Info -->
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="./app/doge.js"></script>
-</body>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./app/doge.js"></script>
+  </body>
 </html>
