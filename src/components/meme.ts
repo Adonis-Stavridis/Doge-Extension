@@ -1,9 +1,8 @@
 import * as vscode from "vscode";
 import * as path from "path";
 
-import { extPath } from "./extpath";
+import { extPath, liveServer } from "./extpath";
 import { getImages, imagesToHTML } from "./images";
-import { start } from "repl";
 
 // GLOBAL VARIABLES
 var currentPath: string = vscode.workspace.workspaceFolders![0].uri.fsPath;
@@ -28,7 +27,9 @@ export async function dogeMeme(): Promise<void> {
     return;
   }
 
-  setTimeout(openOutputFile, 1000);
+  if (!launchApp()) {
+    return;
+  }
 }
 
 // FUNCTIONS
@@ -41,17 +42,10 @@ function checks(): boolean {
   var editor = vscode.window.activeTextEditor;
 
   if (!editor) {
-    vscode.window.showErrorMessage('Doge : No active Editor!');
-    return false;
+    return true;
   }
 
   var filename = editor.document.fileName;
-  var ext = path.extname(filename);
-
-  if (ext !== ".json") {
-    vscode.window.showErrorMessage('Doge : File needs to be a .json file!');
-    return false;
-  }
 
   updatePaths(filename);
 
@@ -101,7 +95,7 @@ async function placeImages(): Promise<boolean> {
 
   var flag: boolean = false;
 
-  const startPosition: number = 28;
+  const startPosition: number = 35;
   const memeFileUri: vscode.Uri = vscode.Uri.parse(memeFile);
   const editPosition: vscode.Position = new vscode.Position(startPosition, 0);
   const editImages: vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
@@ -168,10 +162,18 @@ async function placeImages(): Promise<boolean> {
   return true;
 }
 
-function openOutputFile(): boolean {
+function launchApp(): boolean {
   const fileUri = vscode.Uri.parse(memeFile);
-  if (!vscode.env.openExternal(fileUri)) {
-    vscode.window.showWarningMessage('Doge : Could not open browser window!');
+
+  if (!liveServer) {
+    vscode.window.showWarningMessage('Doge : Install the Live Server VS Code extension to access this feature!');
+    return false;
+  }
+
+  try {
+    vscode.commands.executeCommand("extension.liveServer.goOnline", fileUri);
+  } catch {
+    vscode.window.showWarningMessage('Doge : Could not launch Live Server!');
     return false;
   }
 
