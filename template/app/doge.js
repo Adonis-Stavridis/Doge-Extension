@@ -46,7 +46,14 @@ $(document).ready(function () {
     }
   }
 
-  function addAsset(imgAlt, imageObject) {
+  function addAsset(imgSrc, imgAlt) {
+    var newImage = new Image();
+    newImage.src = imgSrc;
+    newImage.alt = imgAlt;
+    newImage.onload = function () {
+      updateCanvas();
+    };
+
     assets[imgAlt] = {
       pos: {
         x: 0,
@@ -61,30 +68,22 @@ $(document).ready(function () {
         flip: false
       },
       layer: 0,
-      image: imageObject
+      image: newImage
     };
-    console.log(assets);
   }
 
   function addImage(imgSrc, imgAlt) {
-    var newImage = new Image();
-    newImage.src = imgSrc;
-
     while (imgAlt in assets) {
       imgAlt += "-copy";
     }
-    newImage.alt = imgAlt;
 
-    addAsset(imgAlt, newImage);
+    addAsset(imgSrc, imgAlt);
     addImageEdit(imgSrc, imgAlt);
-
-    newImage.onload = function () {
-      updateCanvas();
-    };
   }
 
   function addImageEdit(imgSrc, imgAlt) {
     var newImageEdit = document.createElement("div");
+    newImageEdit.id = imgAlt;
     newImageEdit.classList.add("imageEdit");
 
     var editElement = new Image();
@@ -162,6 +161,9 @@ $(document).ready(function () {
   }
 
   function removeImage(imgAlt) {
-    assets.delete(imgAlt);
+    delete assets[imgAlt];
+    updateCanvas();
+    const editDiv = document.getElementById(imgAlt);
+    editDiv.parentNode.removeChild(editDiv);
   }
 });
