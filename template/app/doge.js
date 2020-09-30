@@ -47,29 +47,35 @@ $(document).ready(function () {
   }
 
   function addAsset(imgSrc, imgAlt) {
-    var newImage = new Image();
-    newImage.src = imgSrc;
-    newImage.alt = imgAlt;
-    newImage.onload = function () {
+    var imageObject = new Image();
+    imageObject.src = imgSrc;
+    imageObject.alt = imgAlt;
+    imageObject.onload = function () {
       updateCanvas();
     };
 
+    const posObject = {
+      x: Math.trunc(canvas.width / 2 - imageObject.width / 2),
+      y: Math.trunc(canvas.height / 2 - imageObject.height / 2)
+    };
+
+    const sizeObject = {
+      x: imageObject.width,
+      y: imageObject.height
+    };
+
+
     assets[imgAlt] = {
-      pos: {
-        x: 0,
-        y: 0
-      },
-      size: {
-        x: 0,
-        y: 0
-      },
+      pos: posObject,
+      size: sizeObject,
       rot: {
         deg: 0,
         flip: false
       },
       layer: 0,
-      image: newImage
+      image: imageObject
     };
+    console.log(assets);
   }
 
   function addImage(imgSrc, imgAlt) {
@@ -86,10 +92,7 @@ $(document).ready(function () {
     newImageEdit.id = imgAlt;
     newImageEdit.classList.add("imageEdit");
 
-    var editElement = new Image();
-    editElement.src = imgSrc;
-    editElement.alt = imgAlt;
-    newImageEdit.appendChild(editElement);
+    newImageEdit.appendChild(assets[imgAlt].image);
 
     editElement = document.createElement("span");
     editElement.textContent = "Pos:";
@@ -98,12 +101,14 @@ $(document).ready(function () {
     editElement = document.createElement("input");
     editElement.type = "number";
     editElement.placeholder = "x";
+    editElement.value = assets[imgAlt].pos.x;
     editElement.required = true;
     newImageEdit.appendChild(editElement);
 
     editElement = document.createElement("input");
     editElement.type = "number";
     editElement.placeholder = "y";
+    editElement.value = assets[imgAlt].pos.y;
     editElement.required = true;
     newImageEdit.appendChild(editElement);
 
@@ -114,12 +119,14 @@ $(document).ready(function () {
     editElement = document.createElement("input");
     editElement.type = "number";
     editElement.placeholder = "x";
+    editElement.value = assets[imgAlt].size.x;
     editElement.required = true;
     newImageEdit.appendChild(editElement);
 
     editElement = document.createElement("input");
     editElement.type = "number";
     editElement.placeholder = "y";
+    editElement.value = assets[imgAlt].size.y;
     editElement.required = true;
     newImageEdit.appendChild(editElement);
 
@@ -130,6 +137,7 @@ $(document).ready(function () {
     editElement = document.createElement("input");
     editElement.type = "number";
     editElement.placeholder = "deg";
+    editElement.value = assets[imgAlt].rot.deg;
     editElement.required = true;
     newImageEdit.appendChild(editElement);
 
@@ -145,6 +153,7 @@ $(document).ready(function () {
     editElement = document.createElement("input");
     editElement.type = "number";
     editElement.placeholder = "num";
+    editElement.value = assets[imgAlt].layer;
     editElement.required = true;
     newImageEdit.appendChild(editElement);
 
