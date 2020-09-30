@@ -6,12 +6,13 @@ $(document).ready(function () {
   context.canvas.width = canvas.clientWidth;
   context.canvas.height = canvas.clientHeight;
 
-  var imagesSet = new Set();
+  var assets = {};
 
   $(window).resize(function () {
     const canvasElement = document.getElementById("memeCanvas");
     context.canvas.width = canvasElement.clientWidth;
     context.canvas.height = canvasElement.clientHeight;
+    updateCanvas();
   });
 
   $(".imagesContainer img").click(function () {
@@ -35,103 +36,132 @@ $(document).ready(function () {
     document.body.removeChild(dlLink);
   });
 
+  function updateCanvas() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (const key in assets) {
+      const imageObject = assets[key].image;
+      const posObject = assets[key].pos;
+      context.drawImage(imageObject, posObject.x, posObject.y);
+    }
+  }
+
+  function addAsset(imgAlt, imageObject) {
+    assets[imgAlt] = {
+      pos: {
+        x: 0,
+        y: 0
+      },
+      size: {
+        x: 0,
+        y: 0
+      },
+      rot: {
+        deg: 0,
+        flip: false
+      },
+      layer: 0,
+      image: imageObject
+    };
+    console.log(assets);
+  }
+
   function addImage(imgSrc, imgAlt) {
     var newImage = new Image();
     newImage.src = imgSrc;
-    newImage.onload = function () {
-      context.drawImage(newImage, 0, 0);
-    };
 
-    var newImgAlt = imgAlt;
-    while (imagesSet.has(newImgAlt)) {
-      newImgAlt = newImgAlt + "-copy";
+    while (imgAlt in assets) {
+      imgAlt += "-copy";
     }
+    newImage.alt = imgAlt;
 
-    newImage.alt = newImgAlt;
+    addAsset(imgAlt, newImage);
+    addImageEdit(imgSrc, imgAlt);
 
-    imagesSet.add(newImgAlt);
-    addImageEdit(imgSrc, newImgAlt);
+    newImage.onload = function () {
+      updateCanvas();
+    };
   }
 
   function addImageEdit(imgSrc, imgAlt) {
     var newImageEdit = document.createElement("div");
     newImageEdit.classList.add("imageEdit");
 
-    var asset = new Image();
-    asset.src = imgSrc;
-    asset.alt = imgAlt;
-    newImageEdit.appendChild(asset);
+    var editElement = new Image();
+    editElement.src = imgSrc;
+    editElement.alt = imgAlt;
+    newImageEdit.appendChild(editElement);
 
-    asset = document.createElement("span");
-    asset.textContent = "Pos:";
-    newImageEdit.appendChild(asset);
+    editElement = document.createElement("span");
+    editElement.textContent = "Pos:";
+    newImageEdit.appendChild(editElement);
 
-    asset = document.createElement("input");
-    asset.type = "number";
-    asset.placeholder = "x";
-    asset.required = true;
-    newImageEdit.appendChild(asset);
+    editElement = document.createElement("input");
+    editElement.type = "number";
+    editElement.placeholder = "x";
+    editElement.required = true;
+    newImageEdit.appendChild(editElement);
 
-    asset = document.createElement("input");
-    asset.type = "number";
-    asset.placeholder = "y";
-    asset.required = true;
-    newImageEdit.appendChild(asset);
+    editElement = document.createElement("input");
+    editElement.type = "number";
+    editElement.placeholder = "y";
+    editElement.required = true;
+    newImageEdit.appendChild(editElement);
 
-    asset = document.createElement("span");
-    asset.textContent = "Size:";
-    newImageEdit.appendChild(asset);
+    editElement = document.createElement("span");
+    editElement.textContent = "Size:";
+    newImageEdit.appendChild(editElement);
 
-    asset = document.createElement("input");
-    asset.type = "number";
-    asset.placeholder = "x";
-    asset.required = true;
-    newImageEdit.appendChild(asset);
+    editElement = document.createElement("input");
+    editElement.type = "number";
+    editElement.placeholder = "x";
+    editElement.required = true;
+    newImageEdit.appendChild(editElement);
 
-    asset = document.createElement("input");
-    asset.type = "number";
-    asset.placeholder = "y";
-    asset.required = true;
-    newImageEdit.appendChild(asset);
+    editElement = document.createElement("input");
+    editElement.type = "number";
+    editElement.placeholder = "y";
+    editElement.required = true;
+    newImageEdit.appendChild(editElement);
 
-    asset = document.createElement("span");
-    asset.textContent = "Rot:";
-    newImageEdit.appendChild(asset);
+    editElement = document.createElement("span");
+    editElement.textContent = "Rot:";
+    newImageEdit.appendChild(editElement);
 
-    asset = document.createElement("input");
-    asset.type = "number";
-    asset.placeholder = "deg";
-    asset.required = true;
-    newImageEdit.appendChild(asset);
+    editElement = document.createElement("input");
+    editElement.type = "number";
+    editElement.placeholder = "deg";
+    editElement.required = true;
+    newImageEdit.appendChild(editElement);
 
-    asset = document.createElement("button");
-    asset.classList.add("flipButton");
-    asset.textContent = "Flip";
-    newImageEdit.appendChild(asset);
+    editElement = document.createElement("button");
+    editElement.classList.add("flipButton");
+    editElement.textContent = "Flip";
+    newImageEdit.appendChild(editElement);
 
-    asset = document.createElement("span");
-    asset.textContent = "Layer:";
-    newImageEdit.appendChild(asset);
+    editElement = document.createElement("span");
+    editElement.textContent = "Layer:";
+    newImageEdit.appendChild(editElement);
 
-    asset = document.createElement("input");
-    asset.type = "number";
-    asset.placeholder = "num";
-    asset.required = true;
-    newImageEdit.appendChild(asset);
+    editElement = document.createElement("input");
+    editElement.type = "number";
+    editElement.placeholder = "num";
+    editElement.required = true;
+    newImageEdit.appendChild(editElement);
 
-    asset = document.createElement("i");
-    asset.classList.add("fas");
-    asset.classList.add("fa-trash");
-    asset.addEventListener("click", function () {
+    editElement = document.createElement("i");
+    editElement.classList.add("fas");
+    editElement.classList.add("fa-trash");
+    editElement.addEventListener("click", function () {
       removeImage(imgAlt);
     });
-    newImageEdit.appendChild(asset);
+    newImageEdit.appendChild(editElement);
 
-    const imagesEditContainter = document.getElementById("imagesEditContainer");
-    imagesEditContainter.appendChild(newImageEdit);
+    const editContainter = document.getElementById("editContainer");
+    editContainter.appendChild(newImageEdit);
   }
 
   function removeImage(imgAlt) {
-    imagesSet.delete(imgAlt);
+    assets.delete(imgAlt);
   }
 });

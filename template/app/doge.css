@@ -139,7 +139,7 @@ body {
   max-height: 3em;
 }
 
-.imagesEditContainer {
+.editContainer {
   display: flex;
   align-items: center;
   flex-direction: column;
