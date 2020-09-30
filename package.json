@@ -25,6 +25,14 @@
         "command": "doge.createMeme",
         "title": "Doge"
       }
+    ],
+    "keybindings": [
+      {
+        "command": "doge.createMeme",
+        "key": "alt+E alt+D",
+        "when": "editorTextFocus",
+        "mac": "cmd+E cmd+D"
+      }
     ]
   },
   "scripts": {
