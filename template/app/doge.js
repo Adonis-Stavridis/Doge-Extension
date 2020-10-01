@@ -40,9 +40,12 @@ $(document).ready(function () {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     for (const key in assets) {
-      const imageObject = assets[key].image;
+      var imageObject = assets[key].image;
       const posObject = assets[key].pos;
-      context.drawImage(imageObject, posObject.x, posObject.y);
+      imageObject.width = assets[key].size.x;
+      imageObject.height = assets[key].size.y;
+
+      context.drawImage(imageObject, posObject.x, posObject.y, imageObject.width, imageObject.height);
     }
   }
 
@@ -75,7 +78,6 @@ $(document).ready(function () {
       layer: 0,
       image: imageObject
     };
-    console.log(assets);
   }
 
   function addImage(imgSrc, imgAlt) {
@@ -92,7 +94,10 @@ $(document).ready(function () {
     newImageEdit.id = imgAlt;
     newImageEdit.classList.add("imageEdit");
 
-    newImageEdit.appendChild(assets[imgAlt].image);
+    var imageCopy = new Image();
+    imageCopy.src = imgSrc;
+    imageCopy.alt = imgAlt;
+    newImageEdit.appendChild(imageCopy);
 
     editElement = document.createElement("span");
     editElement.textContent = "Pos:";
@@ -103,6 +108,9 @@ $(document).ready(function () {
     editElement.placeholder = "x";
     editElement.value = assets[imgAlt].pos.x;
     editElement.required = true;
+    editElement.addEventListener("input", function () {
+      inputEdit(imgAlt, "pos", "x", this.value);
+    });
     newImageEdit.appendChild(editElement);
 
     editElement = document.createElement("input");
@@ -110,6 +118,9 @@ $(document).ready(function () {
     editElement.placeholder = "y";
     editElement.value = assets[imgAlt].pos.y;
     editElement.required = true;
+    editElement.addEventListener("input", function () {
+      inputEdit(imgAlt, "pos", "y", this.value);
+    });
     newImageEdit.appendChild(editElement);
 
     editElement = document.createElement("span");
@@ -121,6 +132,9 @@ $(document).ready(function () {
     editElement.placeholder = "x";
     editElement.value = assets[imgAlt].size.x;
     editElement.required = true;
+    editElement.addEventListener("input", function () {
+      inputEdit(imgAlt, "size", "x", this.value);
+    });
     newImageEdit.appendChild(editElement);
 
     editElement = document.createElement("input");
@@ -128,6 +142,9 @@ $(document).ready(function () {
     editElement.placeholder = "y";
     editElement.value = assets[imgAlt].size.y;
     editElement.required = true;
+    editElement.addEventListener("input", function () {
+      inputEdit(imgAlt, "size", "y", this.value);
+    });
     newImageEdit.appendChild(editElement);
 
     editElement = document.createElement("span");
@@ -139,6 +156,9 @@ $(document).ready(function () {
     editElement.placeholder = "deg";
     editElement.value = assets[imgAlt].rot.deg;
     editElement.required = true;
+    editElement.addEventListener("input", function () {
+      inputEdit(imgAlt, "rot", "deg", this.value);
+    });
     newImageEdit.appendChild(editElement);
 
     editElement = document.createElement("button");
@@ -167,6 +187,13 @@ $(document).ready(function () {
 
     const editContainter = document.getElementById("editContainer");
     editContainter.appendChild(newImageEdit);
+  }
+
+  function inputEdit(imgAlt, object, key, value) {
+    if (!isNaN(value)) {
+      assets[imgAlt][object][key] = parseInt(value);
+      updateCanvas();
+    }
   }
 
   function removeImage(imgAlt) {
