@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .app {
@@ -35,7 +38,7 @@ body {
   min-width: 35%;
 }
 
-.meme {
+.memeDiv {
   position: relative;
   border: 0.05em solid gold;
   width: 90%;
@@ -43,8 +46,13 @@ body {
   overflow: hidden;
 }
 
-.meme img {
+.memeDiv img {
   position: absolute;
+  border: 0.05em solid transparent;
+}
+
+.memeDiv img.selected {
+  border-color: snow;
 }
 
 .renderButton {
@@ -166,6 +174,10 @@ body {
   width: 98%;
   max-height: 2em;
   background-color: #484848;
+}
+
+.imageEdit.selected {
+  background-color: #686868;
 }
 
 .imageEdit.currentDrag {
