@@ -1,74 +1,60 @@
 $(document).ready(function () {
 
-  const canvas = document.getElementById("memeCanvas");
-  const context = canvas.getContext('2d');
+  // ===========================================================================
+  // GLOBAL VARIABLES
+  // ===========================================================================
 
-  context.canvas.width = canvas.clientWidth;
-  context.canvas.height = canvas.clientHeight;
-
+  // asset: String {
+  //   image: Image | text: String,
+  //   pos: {
+  //     x: Int,
+  //     y: Int
+  //   },
+  //   size: {
+  //     x: Int,
+  //     y: Int
+  //   },
+  //   rot: {
+  //     deg: Int,
+  //     flip: Boolean
+  //   },
+  //   layer: Int
+  // }
   var assets = {};
 
-  $(window).resize(function () {
-    const canvasElement = document.getElementById("memeCanvas");
-    context.canvas.width = canvasElement.clientWidth;
-    context.canvas.height = canvasElement.clientHeight;
-    updateCanvas();
-  });
+  var assetsInfo = {
+    imgNumber: 0,
+    textNumber: 0
+  };
 
-  $(".imagesContainer img").click(function () {
-    const imgSrc = $(this).attr('src');
-    const imgAlt = $(this).attr('alt');
-    addImage(imgSrc, imgAlt);
-  });
+  var memeDiv = $("#memeDiv");
 
-  $(".renderButton").click(function () {
-    const canvasElement = document.getElementById("memeCanvas");
-    const MIME_TYPE = "image/png";
-    const imgURL = canvasElement.toDataURL(MIME_TYPE);
+  // ===========================================================================
+  // ASSET HANDLING
+  // ===========================================================================
 
-    const dlLink = document.createElement("a");
-    dlLink.download = "meme.png";
-    dlLink.href = imgURL;
-    dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+  // ADD IMAGE ASSET
+  function addImgAsset(imgName, imgSrc) {
+    const assetName = "img" + assetsInfo.imgNumber++;
 
-    document.body.appendChild(dlLink);
-    dlLink.click();
-    document.body.removeChild(dlLink);
-  });
+    var imgObj = new Image();
+    imgObj.id = assetName;
+    imgObj.alt = imgName;
+    imgObj.src = imgSrc;
 
-  function updateCanvas() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (const key in assets) {
-      var imageObject = assets[key].image;
-      const posObject = assets[key].pos;
-      imageObject.width = assets[key].size.x;
-      imageObject.height = assets[key].size.y;
-
-      context.drawImage(imageObject, posObject.x, posObject.y, imageObject.width, imageObject.height);
-    }
-  }
-
-  function addAsset(imgSrc, imgAlt) {
-    var imageObject = new Image();
-    imageObject.src = imgSrc;
-    imageObject.alt = imgAlt;
-    imageObject.onload = function () {
-      updateCanvas();
-    };
+    console.log(memeDiv.width() + "/" + memeDiv.height());
 
     const posObject = {
-      x: Math.trunc(canvas.width / 2 - imageObject.width / 2),
-      y: Math.trunc(canvas.height / 2 - imageObject.height / 2)
+      x: Math.trunc((memeDiv.height() / 2) - (imgObj.height / 2)),
+      y: Math.trunc((memeDiv.width() / 2) - (imgObj.width / 2))
     };
 
     const sizeObject = {
-      x: imageObject.width,
-      y: imageObject.height
+      x: imgObj.width,
+      y: imgObj.height
     };
 
-
-    assets[imgAlt] = {
+    assets[assetName] = {
       pos: posObject,
       size: sizeObject,
       rot: {
@@ -76,190 +62,49 @@ $(document).ready(function () {
         flip: false
       },
       layer: 0,
-      image: imageObject
+      image: imgObj
     };
+
+    addImgElements(assetName);
+    console.log(assets);
   }
 
-  function addImage(imgSrc, imgAlt) {
-    while (imgAlt in assets) {
-      imgAlt += "-copy";
-    }
+  function addImgElements(assetName) {
+    var imgElement = assets[assetName].image;
 
-    addAsset(imgSrc, imgAlt);
-    addImageEdit(imgSrc, imgAlt);
+    imgElement.style.top = assets[assetName].pos.x + "px";
+    imgElement.style.left = assets[assetName].pos.y + "px";
+    imgElement.style.width = assets[assetName].size.x + "px";
+    imgElement.style.height = assets[assetName].size.y + "px";
+
+    // imgElement.css({
+    //   top: assets[assetName].pos.x,
+    //   left: assets[assetName].pos.y,
+    //   // width: assets[assetName].size.x,
+    //   // height: assets[assetName].size.y
+    // });
+
+    memeDiv.append(imgElement);
   }
 
-  function addImageEdit(imgSrc, imgAlt) {
-    var newImageEdit = document.createElement("div");
-    newImageEdit.id = imgAlt;
-    newImageEdit.classList.add("imageEdit");
-    newImageEdit.addEventListener("click", () => {
-      if (currentDrag !== null) {
-        const oldDrag = document.getElementById(currentDrag);
-        oldDrag.classList.remove("currentDrag");
-      }
-      currentDrag = imgAlt;
-      newImageEdit.classList.add("currentDrag");
-    });
+  // ADD TEXT ASSET
+  function textAsset(textContent) {}
 
-    var imageCopy = new Image();
-    imageCopy.src = imgSrc;
-    imageCopy.alt = imgAlt;
-    newImageEdit.appendChild(imageCopy);
-
-    editElement = document.createElement("span");
-    editElement.textContent = "Pos:";
-    newImageEdit.appendChild(editElement);
-
-    editElement = document.createElement("input");
-    editElement.type = "number";
-    editElement.placeholder = "x";
-    editElement.value = assets[imgAlt].pos.x;
-    editElement.required = true;
-    editElement.addEventListener("input", function () {
-      inputEdit(imgAlt, "pos", "x", this.value);
-    });
-    newImageEdit.appendChild(editElement);
-
-    editElement = document.createElement("input");
-    editElement.type = "number";
-    editElement.placeholder = "y";
-    editElement.value = assets[imgAlt].pos.y;
-    editElement.required = true;
-    editElement.addEventListener("input", function () {
-      inputEdit(imgAlt, "pos", "y", this.value);
-    });
-    newImageEdit.appendChild(editElement);
-
-    editElement = document.createElement("span");
-    editElement.textContent = "Size:";
-    newImageEdit.appendChild(editElement);
-
-    editElement = document.createElement("input");
-    editElement.type = "number";
-    editElement.placeholder = "x";
-    editElement.value = assets[imgAlt].size.x;
-    editElement.required = true;
-    editElement.addEventListener("input", function () {
-      inputEdit(imgAlt, "size", "x", this.value);
-    });
-    newImageEdit.appendChild(editElement);
-
-    editElement = document.createElement("input");
-    editElement.type = "number";
-    editElement.placeholder = "y";
-    editElement.value = assets[imgAlt].size.y;
-    editElement.required = true;
-    editElement.addEventListener("input", function () {
-      inputEdit(imgAlt, "size", "y", this.value);
-    });
-    newImageEdit.appendChild(editElement);
-
-    editElement = document.createElement("span");
-    editElement.textContent = "Rot:";
-    newImageEdit.appendChild(editElement);
-
-    editElement = document.createElement("input");
-    editElement.type = "number";
-    editElement.placeholder = "deg";
-    editElement.value = assets[imgAlt].rot.deg;
-    editElement.required = true;
-    editElement.addEventListener("input", function () {
-      inputEdit(imgAlt, "rot", "deg", this.value);
-    });
-    newImageEdit.appendChild(editElement);
-
-    editElement = document.createElement("button");
-    editElement.classList.add("flipButton");
-    editElement.textContent = "Flip";
-    newImageEdit.appendChild(editElement);
-
-    editElement = document.createElement("span");
-    editElement.textContent = "Layer:";
-    newImageEdit.appendChild(editElement);
-
-    editElement = document.createElement("input");
-    editElement.type = "number";
-    editElement.placeholder = "num";
-    editElement.value = assets[imgAlt].layer;
-    editElement.required = true;
-    newImageEdit.appendChild(editElement);
-
-    editElement = document.createElement("i");
-    editElement.classList.add("fas");
-    editElement.classList.add("fa-trash");
-    editElement.addEventListener("click", function () {
-      removeImage(imgAlt);
-    });
-    newImageEdit.appendChild(editElement);
-
-    const editContainter = document.getElementById("editContainer");
-    editContainter.appendChild(newImageEdit);
+  function updateMemeDiv() {
+    console.log(assets);
   }
 
-  function inputEdit(imgAlt, object, key, value) {
-    if (!isNaN(value)) {
-      assets[imgAlt][object][key] = parseInt(value);
-      updateCanvas();
-    }
-  }
+  // ===========================================================================
+  // EVENTS
+  // ===========================================================================
 
-  function removeImage(imgAlt) {
-    if (currentDrag === imgAlt) {
-      currentDrag = null;
-    }
-    delete assets[imgAlt];
-    updateCanvas();
-    const editDiv = document.getElementById(imgAlt);
-    editDiv.parentNode.removeChild(editDiv);
-    console.log(currentDrag);
-  }
-
-  var canvasOffset = $("#memeCanvas").offset();
-  var offsetX = canvasOffset.left;
-  var offsetY = canvasOffset.top;
-  var isDragging = false;
-  var currentDrag = null;
-
-  function handleMouseDown(e) {
-    canMouseX = parseInt(e.clientX - offsetX);
-    canMouseY = parseInt(e.clientY - offsetY);
-    isDragging = true;
-  }
-
-  function handleMouseUp(e) {
-    canMouseX = parseInt(e.clientX - offsetX);
-    canMouseY = parseInt(e.clientY - offsetY);
-    isDragging = false;
-  }
-
-  function handleMouseOut(e) {
-    canMouseX = parseInt(e.clientX - offsetX);
-    canMouseY = parseInt(e.clientY - offsetY);
-  }
-
-  function handleMouseMove(e) {
-    canMouseX = parseInt(e.clientX - offsetX);
-    canMouseY = parseInt(e.clientY - offsetY);
-    console.log("here" + currentDrag);
-    if (isDragging && (currentDrag !== null)) {
-      assets[currentDrag].pos.x = canMouseX - assets[currentDrag].size.x / 2;
-      assets[currentDrag].pos.y = canMouseY - assets[currentDrag].size.y / 2;
-      updateCanvas();
-    }
-  }
-
-  $("#memeCanvas").mousedown(function (e) {
-    handleMouseDown(e);
-  });
-  $("#memeCanvas").mousemove(function (e) {
-    handleMouseMove(e);
-  });
-  $("#memeCanvas").mouseup(function (e) {
-    handleMouseUp(e);
-  });
-  $("#memeCanvas").mouseout(function (e) {
-    handleMouseOut(e);
+  $(".imagesContainer img").click(function () {
+    const imgAlt = $(this).attr('alt');
+    const imgSrc = $(this).attr('src');
+    addImgAsset(imgAlt, imgSrc);
   });
 
+  $(".renderButton").click(function () {
+    window.alert("RENDER");
+  });
 });
