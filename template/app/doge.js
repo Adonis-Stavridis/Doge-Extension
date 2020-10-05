@@ -46,8 +46,8 @@ $(document).ready(function () {
     imgObj.src = imgSrc;
 
     const posObject = {
-      x: Math.trunc((memeDiv.height() / 2) - (imgObj.height / 2)),
-      y: Math.trunc((memeDiv.width() / 2) - (imgObj.width / 2))
+      x: Math.trunc((memeDiv.width() / 2) - (imgObj.width / 2)),
+      y: Math.trunc((memeDiv.height() / 2) - (imgObj.height / 2))
     };
 
     const sizeObject = {
@@ -73,8 +73,8 @@ $(document).ready(function () {
     var imgElement = assets[assetName].image;
 
     imgElement.id = assetName;
-    imgElement.style.top = assets[assetName].pos.x + "px";
-    imgElement.style.left = assets[assetName].pos.y + "px";
+    imgElement.style.left = assets[assetName].pos.x + "px";
+    imgElement.style.top = assets[assetName].pos.y + "px";
     imgElement.style.width = assets[assetName].size.x + "px";
     imgElement.style.height = assets[assetName].size.y + "px";
 
@@ -111,7 +111,7 @@ $(document).ready(function () {
     editElement.value = assets[assetName].pos.x;
     editElement.required = true;
     editElement.addEventListener("input", function () {
-      inputEdit(assetName, "pos", "x", this.value);
+      updateAsset(assetName, "pos", "x", this.value);
     });
     newImageEdit.appendChild(editElement);
 
@@ -121,7 +121,7 @@ $(document).ready(function () {
     editElement.value = assets[assetName].pos.y;
     editElement.required = true;
     editElement.addEventListener("input", function () {
-      inputEdit(assetName, "pos", "y", this.value);
+      updateAsset(assetName, "pos", "y", this.value);
     });
     newImageEdit.appendChild(editElement);
 
@@ -135,7 +135,7 @@ $(document).ready(function () {
     editElement.value = assets[assetName].size.x;
     editElement.required = true;
     editElement.addEventListener("input", function () {
-      inputEdit(assetName, "size", "x", this.value);
+      updateAsset(assetName, "size", "x", this.value);
     });
     newImageEdit.appendChild(editElement);
 
@@ -145,7 +145,7 @@ $(document).ready(function () {
     editElement.value = assets[assetName].size.y;
     editElement.required = true;
     editElement.addEventListener("input", function () {
-      inputEdit(assetName, "size", "y", this.value);
+      updateAsset(assetName, "size", "y", this.value);
     });
     newImageEdit.appendChild(editElement);
 
@@ -159,7 +159,7 @@ $(document).ready(function () {
     editElement.value = assets[assetName].rot.deg;
     editElement.required = true;
     editElement.addEventListener("input", function () {
-      inputEdit(assetName, "rot", "deg", this.value);
+      updateAsset(assetName, "rot", "deg", this.value);
     });
     newImageEdit.appendChild(editElement);
 
@@ -191,9 +191,11 @@ $(document).ready(function () {
     editContainer.append(newImageEdit);
   }
 
-  function inputEdit(assetName, object, key, value) {
+  function updateAsset(assetName, object, key, value) {
     if (!isNaN(value)) {
       assets[assetName][object][key] = parseInt(value);
+      const cssAttr = getCSSAttribute(object, key);
+      $(".memeDiv img#" + assetName).css(cssAttr, value + "px");
     }
   }
 
@@ -216,6 +218,21 @@ $(document).ready(function () {
   function unsetSelection(assetName) {
     $(".memeDiv img#" + assetName).removeClass("selected");
     $(".editContainer div#" + assetName).removeClass("selected");
+  }
+
+  function getCSSAttribute(object, key) {
+    var pairs = {
+      pos: {
+        x: "left",
+        y: "top"
+      },
+      size: {
+        x: "width",
+        y: "height"
+      }
+    };
+
+    return pairs[object][key];
   }
 
   // ADD TEXT ASSET
