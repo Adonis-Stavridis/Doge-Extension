@@ -39,6 +39,7 @@ body {
   border: 0.05em solid gold;
   width: 90%;
   height: 80%;
+  overflow: hidden;
 }
 
 .renderButton {
@@ -117,6 +118,7 @@ body {
   margin: 0.25em;
   max-width: 3em;
   max-height: 3em;
+  cursor: pointer;
 }
 
 .userImagesDiv p {
@@ -137,6 +139,7 @@ body {
   margin: 0.25em;
   max-width: 3em;
   max-height: 3em;
+  cursor: pointer;
 }
 
 .editContainer {
@@ -158,6 +161,10 @@ body {
   width: 98%;
   max-height: 2em;
   background-color: #484848;
+}
+
+.imageEdit.currentDrag {
+  background-color: dimgrey;
 }
 
 .imageEdit:nth-child(4n + 1) {
@@ -206,6 +213,8 @@ body {
   transition-duration: 0.5s;
   -webkit-transition-property: background-color;
   transition-property: background-color;
+  cursor: ns-resize;
+  caret-color: transparent;
 }
 
 .imageEdit input:hover,

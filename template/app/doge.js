@@ -93,6 +93,14 @@ $(document).ready(function () {
     var newImageEdit = document.createElement("div");
     newImageEdit.id = imgAlt;
     newImageEdit.classList.add("imageEdit");
+    newImageEdit.addEventListener("click", () => {
+      if (currentDrag !== null) {
+        const oldDrag = document.getElementById(currentDrag);
+        oldDrag.classList.remove("currentDrag");
+      }
+      currentDrag = imgAlt;
+      newImageEdit.classList.add("currentDrag");
+    });
 
     var imageCopy = new Image();
     imageCopy.src = imgSrc;
@@ -197,9 +205,61 @@ $(document).ready(function () {
   }
 
   function removeImage(imgAlt) {
+    if (currentDrag === imgAlt) {
+      currentDrag = null;
+    }
     delete assets[imgAlt];
     updateCanvas();
     const editDiv = document.getElementById(imgAlt);
     editDiv.parentNode.removeChild(editDiv);
+    console.log(currentDrag);
   }
+
+  var canvasOffset = $("#memeCanvas").offset();
+  var offsetX = canvasOffset.left;
+  var offsetY = canvasOffset.top;
+  var isDragging = false;
+  var currentDrag = null;
+
+  function handleMouseDown(e) {
+    canMouseX = parseInt(e.clientX - offsetX);
+    canMouseY = parseInt(e.clientY - offsetY);
+    isDragging = true;
+  }
+
+  function handleMouseUp(e) {
+    canMouseX = parseInt(e.clientX - offsetX);
+    canMouseY = parseInt(e.clientY - offsetY);
+    isDragging = false;
+  }
+
+  function handleMouseOut(e) {
+    canMouseX = parseInt(e.clientX - offsetX);
+    canMouseY = parseInt(e.clientY - offsetY);
+  }
+
+  function handleMouseMove(e) {
+    canMouseX = parseInt(e.clientX - offsetX);
+    canMouseY = parseInt(e.clientY - offsetY);
+    console.log("here" + currentDrag);
+    if (isDragging && (currentDrag !== null)) {
+      assets[currentDrag].pos.x = canMouseX - assets[currentDrag].size.x / 2;
+      assets[currentDrag].pos.y = canMouseY - assets[currentDrag].size.y / 2;
+      updateCanvas();
+    }
+  }
+
+  $("#memeCanvas").mousedown(function (e) {
+    handleMouseDown(e);
+  });
+  $("#memeCanvas").mousemove(function (e) {
+    handleMouseMove(e);
+  });
+  $("#memeCanvas").mouseup(function (e) {
+    handleMouseUp(e);
+  });
+  $("#memeCanvas").mouseout(function (e) {
+    handleMouseOut(e);
+  });
+
 });
