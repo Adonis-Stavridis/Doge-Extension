@@ -255,9 +255,11 @@ $(document).ready(function () {
   var moving = false;
 
   function move(e) {
-    const offset = memeDiv.offset();
-    var newX = e.clientX - offset.left - (assets[currentSelection].size.x / 2);
-    var newY = e.clientY - offset.top - (assets[currentSelection].size.y / 2);
+    const memeDivOffset = memeDiv.offset();
+    const imgOffset = $(".memeDiv img#" + currentSelection).offset();
+
+    var newX = 2 * e.clientX - memeDivOffset.left - imgOffset.left;
+    var newY = 2 * e.clientY - memeDivOffset.top - imgOffset.top;
 
     updateAsset(currentSelection, "pos", "x", newX);
     updateAsset(currentSelection, "pos", "y", newY);
