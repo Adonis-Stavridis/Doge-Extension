@@ -78,12 +78,9 @@ $(document).ready(function () {
     imgElement.style.width = assets[assetName].size.x + "px";
     imgElement.style.height = assets[assetName].size.y + "px";
 
-    imgElement.addEventListener("click", function () {
-      if (currentSelection) {
-        unsetSelection(currentSelection);
-      }
-      setSelection(assetName);
-    });
+    imgElement.addEventListener("mousedown", function () {
+      initialClick(assetName);
+    }, false);
 
     var newImageEdit = document.createElement("div");
     newImageEdit.id = assetName;
@@ -94,7 +91,6 @@ $(document).ready(function () {
       }
       setSelection(assetName);
     });
-
 
     var imageCopy = new Image();
     imageCopy.alt = imgElement.alt;
@@ -251,4 +247,35 @@ $(document).ready(function () {
   $(".renderButton").click(function () {
     window.alert("RENDER");
   });
+
+  // ===========================================================================
+  // DRAG IMAGES
+  // ===========================================================================
+
+  var moving = false;
+
+  function move(e) {
+    const offset = memeDiv.offset();
+    var newX = e.clientX - offset.left - (assets[currentSelection].size.x / 2);
+    var newY = e.clientY - offset.top - (assets[currentSelection].size.y / 2);
+
+    updateAsset(currentSelection, "pos", "x", newX);
+    updateAsset(currentSelection, "pos", "y", newY);
+  }
+
+  function initialClick(assetName) {
+    if (moving) {
+      document.removeEventListener("mousemove", move);
+      moving = !moving;
+      return;
+    }
+
+    moving = !moving;
+    if (currentSelection) {
+      unsetSelection(currentSelection);
+    }
+    setSelection(assetName);
+
+    document.addEventListener("mousemove", move, false);
+  }
 });
