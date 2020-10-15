@@ -154,6 +154,10 @@ body {
   max-height: 3em;
   border: solid 0.05em transparent;
   cursor: pointer;
+  -webkit-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-property: border-color;
+  transition-property: border-color;
 }
 
 .defaultImagesDiv img:hover {

@@ -57,6 +57,8 @@ function addImgAsset(imgName, imgSrc) {
   };
 
   addImgElements(assetName);
+
+  return assetName;
 }
 
 function addImgElements(assetName) {
@@ -165,8 +167,9 @@ function addImgElements(assetName) {
   editElement = document.createElement("i");
   editElement.classList.add("fas");
   editElement.classList.add("fa-trash");
-  editElement.addEventListener("click", function () {
+  editElement.addEventListener("click", function (e) {
     removeImage(assetName);
+    e.stopPropagation();
   });
   newImageEdit.appendChild(editElement);
 
@@ -184,7 +187,6 @@ function updateAsset(assetName, object, key, value) {
 
 function removeImage(assetName) {
   if (currentSelection === assetName) {
-    unsetSelection(currentSelection);
     currentSelection = null;
   }
   delete assets[assetName];
@@ -230,7 +232,12 @@ document.querySelectorAll(".imagesContainer img").forEach(function (image) {
   image.addEventListener("click", function () {
     const imgAlt = this.getAttribute("alt");
     const imgSrc = this.getAttribute("src");
-    addImgAsset(imgAlt, imgSrc);
+    const newAssetName = addImgAsset(imgAlt, imgSrc);
+    
+    if (currentSelection) {
+      unsetSelection(currentSelection);
+    }
+    setSelection(newAssetName);
   }); 
 });
 
