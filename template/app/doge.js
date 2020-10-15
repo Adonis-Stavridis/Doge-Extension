@@ -69,6 +69,13 @@ function addImgElements(assetName) {
   imgElement.style.top = assets[assetName].pos.y + "px";
   imgElement.style.width = assets[assetName].size.x + "px";
   imgElement.style.height = assets[assetName].size.y + "px";
+  imgElement.draggable = false;
+  imgElement.onclick = function () {
+    if (currentSelection) {
+      unsetSelection(currentSelection);
+    }
+    setSelection(assetName);
+  };
 
   var newImageEdit = document.createElement("div");
   newImageEdit.id = assetName;
@@ -249,35 +256,60 @@ document.querySelector(".renderButton").addEventListener("click", function () {
 // DRAG IMAGES
 // ===========================================================================
 
-var moving = false;
+var active = false;
+var currentX;
+var currentY;
+var initialX;
+var initialY;
+var xOffset = 0;
+var yOffset = 0;
 
-function move(e) {
-  const memeDivOffsetLeft = memeDiv.offsetLeft;
-  const memeDivOffsetTop = memeDiv.offsetTop;
+memeDiv.addEventListener("touchstart", dragStart, false);
+memeDiv.addEventListener("touchend", dragEnd, false);
+memeDiv.addEventListener("touchmove", drag, false);
 
-  const currentAsset = document.querySelector(".memeDiv img#" + currentSelection);
-  const imgOffsetLeft = currentAsset.offsetLeft;
-  const imgOffsetTop = currentAsset.offsetTop;
+memeDiv.addEventListener("mousedown", dragStart, false);
+memeDiv.addEventListener("mouseup", dragEnd, false);
+memeDiv.addEventListener("mousemove", drag, false);
 
-  var newX = 2 * e.clientX - memeDivOffsetLeft - imgOffsetLeft;
-  var newY = 2 * e.clientY - memeDivOffsetTop - imgOffsetTop;
+function dragStart(e) {
+  if (e.type === "touchstart") {
+    initialX = e.touches[0].clientX - xOffset;
+    initialY = e.touches[0].clientY - yOffset;
+  } else {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+  }
 
-  updateAsset(currentSelection, "pos", "x", newX);
-  updateAsset(currentSelection, "pos", "y", newY);
+  if (e.target.id === currentSelection) {
+    active = true;
+  }
 }
 
-function initialClick(assetName) {
-  if (moving) {
-    document.removeEventListener("mousemove", move);
-    moving = !moving;
-    return;
-  }
+function dragEnd(e) {
+  initialX = currentX;
+  initialY = currentY;
 
-  moving = !moving;
-  if (currentSelection) {
-    unsetSelection(currentSelection);
-  }
-  setSelection(assetName);
+  active = false;
+}
 
-  document.addEventListener("mousemove", move, false);
+function drag(e) {
+  if (active) {
+  
+    e.preventDefault();
+  
+    if (e.type === "touchmove") {
+      currentX = e.touches[0].clientX - initialX;
+      currentY = e.touches[0].clientY - initialY;
+    } else {
+      currentX = e.clientX - initialX;
+      currentY = e.clientY - initialY;
+    }
+
+    xOffset = currentX;
+    yOffset = currentY;
+
+    updateAsset(currentSelection, "pos", "x", currentX);
+    updateAsset(currentSelection, "pos", "y", currentY);
+  }
 }
