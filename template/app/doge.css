@@ -152,7 +152,12 @@ body {
   margin: 0.25em;
   max-width: 3em;
   max-height: 3em;
+  border: solid 0.05em transparent;
   cursor: pointer;
+}
+
+.defaultImagesDiv img:hover {
+  border-color: gray;
 }
 
 .editContainer {
