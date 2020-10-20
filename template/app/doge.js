@@ -97,7 +97,7 @@ function addImgElements(assetName) {
   newImageEdit.appendChild(editElement);
 
   editElement = document.createElement("input");
-  
+  editElement.id = assetName + "-posx";
   editElement.type = "number";
   editElement.placeholder = "x";
   editElement.value = assets[assetName].pos.x;
@@ -108,6 +108,7 @@ function addImgElements(assetName) {
   newImageEdit.appendChild(editElement);
 
   editElement = document.createElement("input");
+  editElement.id = assetName + "-posy";
   editElement.type = "number";
   editElement.placeholder = "y";
   editElement.value = assets[assetName].pos.y;
@@ -122,6 +123,7 @@ function addImgElements(assetName) {
   newImageEdit.appendChild(editElement);
 
   editElement = document.createElement("input");
+  editElement.id = assetName + "-sizex";
   editElement.type = "number";
   editElement.placeholder = "x";
   editElement.value = assets[assetName].size.x;
@@ -132,6 +134,7 @@ function addImgElements(assetName) {
   newImageEdit.appendChild(editElement);
 
   editElement = document.createElement("input");
+  editElement.id = assetName + "-sizey";
   editElement.type = "number";
   editElement.placeholder = "y";
   editElement.value = assets[assetName].size.y;
@@ -146,6 +149,7 @@ function addImgElements(assetName) {
   newImageEdit.appendChild(editElement);
 
   editElement = document.createElement("input");
+  editElement.id = assetName + "-rot";
   editElement.type = "number";
   editElement.placeholder = "deg";
   editElement.value = assets[assetName].rot.deg;
@@ -165,6 +169,7 @@ function addImgElements(assetName) {
   newImageEdit.appendChild(editElement);
 
   editElement = document.createElement("input");
+  editElement.id = assetName + "-layer";
   editElement.type = "number";
   editElement.placeholder = "num";
   editElement.value = assets[assetName].layer;
@@ -186,12 +191,14 @@ function addImgElements(assetName) {
 
 function updateAsset(assetName, object, key, value, inputFlag = false) {
   if (!isNaN(value)) {
-    assets[assetName][object][key] = parseInt(value);
+    const intValue = parseInt(value);
+    assets[assetName][object][key] = intValue;
     const cssAttr = attrToCSS(object, key);
-    document.querySelector(".memeDiv img#" + assetName).style[cssAttr] = value + "px";
+    document.querySelector(".memeDiv img#" + assetName).style[cssAttr] = intValue + "px";
     
     if (inputFlag) {
-      console.log("updateInputs");
+      const inputId = attrToId(object,key);
+      document.querySelector("#editContainer div#" + assetName + " input#" + assetName + "-" + inputId).value = intValue;
     }
   }
 }
@@ -226,6 +233,21 @@ function attrToCSS(object, key) {
     size: {
       x: "width",
       y: "height"
+    }
+  };
+
+  return pairs[object][key];
+}
+
+function attrToId(object,key) {
+  var pairs = {
+    pos: {
+      x: "posx",
+      y: "posy"
+    },
+    size: {
+      x: "sizex",
+      y: "sizey"
     }
   };
 
@@ -285,7 +307,11 @@ function dragStart(e) {
       setSelection(e.target.id);
     }
     active = true;
+    document.body.style.cursor = "move";
   } else {
+    if (currentSelection) {
+      unsetSelection(currentSelection);
+    }
     return false;
   }
 
@@ -306,6 +332,7 @@ function dragEnd(e) {
   initialY = currentY;
 
   active = false;
+  document.body.style.cursor = "default";
 }
 
 function drag(e) {
