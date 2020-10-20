@@ -70,22 +70,22 @@ function addImgElements(assetName) {
   imgElement.style.width = assets[assetName].size.x + "px";
   imgElement.style.height = assets[assetName].size.y + "px";
   imgElement.draggable = false;
-  imgElement.onclick = function () {
+  imgElement.addEventListener("click", function () {
     if (currentSelection) {
       unsetSelection(currentSelection);
     }
     setSelection(assetName);
-  };
+  });
 
   var newImageEdit = document.createElement("div");
   newImageEdit.id = assetName;
   newImageEdit.classList.add("imageEdit");
-  newImageEdit.onclick = function () {
+  newImageEdit.addEventListener("click", function () {
     if (currentSelection) {
       unsetSelection(currentSelection);
     }
     setSelection(assetName);
-  };
+  });
 
   var imageCopy = new Image();
   imageCopy.alt = imgElement.alt;
@@ -184,11 +184,15 @@ function addImgElements(assetName) {
   editContainer.append(newImageEdit);
 }
 
-function updateAsset(assetName, object, key, value) {
+function updateAsset(assetName, object, key, value, inputFlag = false) {
   if (!isNaN(value)) {
     assets[assetName][object][key] = parseInt(value);
     const cssAttr = attrToCSS(object, key);
     document.querySelector(".memeDiv img#" + assetName).style[cssAttr] = value + "px";
+    
+    if (inputFlag) {
+      console.log("updateInputs");
+    }
   }
 }
 
@@ -273,16 +277,27 @@ memeDiv.addEventListener("mouseup", dragEnd, false);
 memeDiv.addEventListener("mousemove", drag, false);
 
 function dragStart(e) {
+  if (e.target.tagName === "IMG") {
+    if (currentSelection !== e.target.id) {
+      if (currentSelection) {
+        unsetSelection(currentSelection);
+      }
+      setSelection(e.target.id);
+    }
+    active = true;
+  } else {
+    return false;
+  }
+
+  xOffset = e.target.offsetLeft;
+  yOffset = e.target.offsetTop;
+
   if (e.type === "touchstart") {
     initialX = e.touches[0].clientX - xOffset;
     initialY = e.touches[0].clientY - yOffset;
   } else {
     initialX = e.clientX - xOffset;
     initialY = e.clientY - yOffset;
-  }
-
-  if (e.target.id === currentSelection) {
-    active = true;
   }
 }
 
@@ -295,7 +310,6 @@ function dragEnd(e) {
 
 function drag(e) {
   if (active) {
-  
     e.preventDefault();
   
     if (e.type === "touchmove") {
@@ -309,7 +323,7 @@ function drag(e) {
     xOffset = currentX;
     yOffset = currentY;
 
-    updateAsset(currentSelection, "pos", "x", currentX);
-    updateAsset(currentSelection, "pos", "y", currentY);
+    updateAsset(currentSelection, "pos", "x", currentX, true);
+    updateAsset(currentSelection, "pos", "y", currentY, true);
   }
 }

@@ -33,6 +33,13 @@ body {
   color: snow;
 }
 
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
+
 .appContainer {
   width: 100%;
   height: 100vh;
