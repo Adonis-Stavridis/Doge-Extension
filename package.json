@@ -29,8 +29,7 @@
     "keybindings": [
       {
         "command": "doge.createMeme",
-        "key": "alt+E alt+D",
-        "when": "editorTextFocus",
+        "key": "ctrl+E ctrl+D",
         "mac": "cmd+E cmd+D"
       }
     ]
