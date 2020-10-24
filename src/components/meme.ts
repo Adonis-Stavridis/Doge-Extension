@@ -1,89 +1,54 @@
 import * as vscode from "vscode";
-import * as path from "path";
 
 import { extPath, liveServer } from "./extpath";
 import { getImages, imagesToHTML } from "./images";
+import { handleError } from "./error";
 
 // GLOBAL VARIABLES
-var currentPath: string = vscode.workspace.workspaceFolders![0].uri.fsPath;
-var memeFile: string = currentPath + "/.dogeapp/doge.html";
+const currentPath: string = vscode.workspace.workspaceFolders![0].uri.fsPath;
+const memeFile: string = currentPath + "/.dogeapp/doge.html";
 var addedLines: number = 0;
 
 // EXPORT FUNCTION
 export async function dogeMeme(): Promise<void> {
   var flag: boolean = true;
 
-  if (!checks()) {
-    return;
-  }
-
   flag = await copyTemplate();
   if (!flag) {
     return;
   }
 
-  flag = await placeImages();
-  if (!flag) {
-    return;
-  }
+  // flag = await placeImages();
+  // if (!flag) {
+  //   return;
+  // }
 
-  if (!launchApp()) {
-    return;
-  }
+  // if (!launchApp()) {
+  //   return;
+  // }
 }
 
 // FUNCTIONS
-function updatePaths(filename: string) {
-  currentPath = path.dirname(filename);
-  memeFile = currentPath + "/.dogeapp/doge.html";
-}
 
-function checks(): boolean {
-  var editor = vscode.window.activeTextEditor;
-
-  if (!editor) {
-    return true;
-  }
-
-  var filename = editor.document.fileName;
-
-  updatePaths(filename);
-
-  return true;
-}
-
+// Copy template files from extension to workspace
 async function copyTemplate(): Promise<boolean> {
   const templateUri: vscode.Uri = vscode.Uri.parse(extPath + "/out/template");
   const currentPathUri: vscode.Uri = vscode.Uri.parse(currentPath + "/.dogeapp");
   const imgUri: vscode.Uri = vscode.Uri.parse(extPath + "/out/img");
   const currentImgPathUri: vscode.Uri = vscode.Uri.parse(currentPath + "/.dogeapp/app/img");
 
-  let copy = async function () {
-    try {
-      await vscode.workspace.fs.copy(templateUri, currentPathUri, { overwrite: true });
-    } catch {
-      vscode.window.showErrorMessage('Doge : An error (id : 01) within the extension occured! Create an [issue](https://github.com/Adonis-Stavridis/Doge-Extension/issues/new?title=Doge%20:%20An%20error%20%28id%20:%2001%29%20within%20the%20extension%20occured!) on the GitHub repository!');
-      return false;
-    }
-
-    try {
-      await vscode.workspace.fs.copy(imgUri, currentImgPathUri, { overwrite: true });
-    } catch {
-      vscode.window.showErrorMessage('Doge : An error (id : 01) within the extension occured! Create an [issue](https://github.com/Adonis-Stavridis/Doge-Extension/issues/new?title=Doge%20:%20An%20error%20%28id%20:%2001%29%20within%20the%20extension%20occured!) on the GitHub repository!');
-      return false;
-    }
-
-    return true;
-  };
-
   try {
-    await vscode.workspace.fs.stat(currentPathUri);
+    await vscode.workspace.fs.copy(templateUri, currentPathUri, { overwrite: true });
   } catch {
-    return copy();
+    handleError(1);
+    return false;
   }
 
-  if (addedLines === 0) {
-    return copy();
+  try {
+    await vscode.workspace.fs.copy(imgUri, currentImgPathUri, { overwrite: true });
+  } catch {
+    handleError(2);
+    return false;
   }
 
   return true;
@@ -112,12 +77,12 @@ async function placeImages(): Promise<boolean> {
 
   let applyAndSave = async function () {
     if (!vscode.workspace.applyEdit(editImages)) {
-      vscode.window.showErrorMessage('Doge : An error (id : 03) within the extension occured! Create an [issue](https://github.com/Adonis-Stavridis/Doge-Extension/issues/new?title=Doge%20:%20An%20error%20%28id%20:%2003%29%20within%20the%20extension%20occured!) on the GitHub repository!');
+      handleError(3);
       return false;
     }
 
     if (!(await vscode.workspace.openTextDocument(memeFileUri)).save()) {
-      vscode.window.showErrorMessage('Doge : An error (id : 04) within the extension occured! Create an [issue](https://github.com/Adonis-Stavridis/Doge-Extension/issues/new?title=Doge%20:%20An%20error%20%28id%20:%2004%29%20within%20the%20extension%20occured!) on the GitHub repository!');
+      handleError(4);
       return false;
     }
   };
@@ -166,7 +131,7 @@ function launchApp(): boolean {
   const fileUri = vscode.Uri.parse(memeFile);
 
   if (!liveServer) {
-    vscode.window.showWarningMessage('Doge : Install the Live Server VS Code extension to access this feature!');
+    vscode.window.showWarningMessage('Doge : Install the [ritwickdey.LiveServer](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VS Code extension to access this feature!');
     return false;
   }
 
