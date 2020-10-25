@@ -247,20 +247,23 @@ function attrToId(object,key) {
 }
 
 function checkboxHandle() {
-  var checkbox = document.querySelector("#checkboxInput");
+  var checkbox = document.querySelector(".imagesCheckbox label input#checkboxInput");
+  var text = document.querySelector(".imagesCheckbox label span#checkboxText");
   var userImages = document.querySelector("div.userImages");
   var defaultImages = document.querySelector("div.defaultImages");
 
   if (checkbox.checked) {
     if (userImages) {
-      userImages.classList.add("separator");
-    }
-    defaultImages.style.display = "block";
-  } else {
-    if (userImages) {
       userImages.classList.remove("separator");
     }
     defaultImages.style.display = "none";
+    text.innerHTML = "Show default images";
+  } else {
+    if (userImages) {
+      userImages.classList.add("separator");
+    }
+    defaultImages.style.display = "block";
+    text.innerHTML = "Hide default images";
   }
 }
 

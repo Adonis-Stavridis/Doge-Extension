@@ -175,10 +175,12 @@ img {
   align-items: center;
   flex-direction: row;
   width: 90%;
+  margin-top: 0.25em;
 }
 
 .imagesCheckbox label {
   font-size: calc(10px + 0.5vmin);
+  cursor: pointer;
 }
 
 .editContainer {
