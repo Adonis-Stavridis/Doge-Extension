@@ -7,7 +7,6 @@ import { handleError } from "./error";
 // GLOBAL VARIABLES
 const currentPath: string = vscode.workspace.workspaceFolders![0].uri.fsPath;
 const memeFile: string = currentPath + "/.dogeapp/doge.html";
-var addedLines: number = 0;
 
 // EXPORT FUNCTION
 export async function dogeMeme(): Promise<void> {
@@ -18,14 +17,17 @@ export async function dogeMeme(): Promise<void> {
     return;
   }
 
-  // flag = await placeImages();
-  // if (!flag) {
-  //   return;
-  // }
+  flag = await copyImages();
+  if (!flag) {
+    return;
+  }
 
-  // if (!launchApp()) {
-  //   return;
-  // }
+  setTimeout(async function () {
+    flag = await launchApp();
+    if (!flag) {
+      return;
+    }
+  }, 1000);
 }
 
 // FUNCTIONS
@@ -54,80 +56,58 @@ async function copyTemplate(): Promise<boolean> {
   return true;
 }
 
-async function placeImages(): Promise<boolean> {
+// Copy user images from workspace to doge.html
+async function copyImages(): Promise<boolean> {
   const imgFolder = currentPath + "/img";
   const folderUri = vscode.Uri.parse(imgFolder);
 
-  var flag: boolean = false;
-
-  const startPosition: number = 35;
-  const memeFileUri: vscode.Uri = vscode.Uri.parse(memeFile);
-  const editPosition: vscode.Position = new vscode.Position(startPosition, 0);
-  const editImages: vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
-
-  let deleteImages = function () {
-    const rangePosition: vscode.Position = new vscode.Position(startPosition + addedLines, 0);
-    const replaceRange: vscode.Range = new vscode.Range(editPosition, rangePosition);
-    const noImageHtml = "<p>No user images</p>";
-
-    editImages.replace(memeFileUri, replaceRange, noImageHtml);
-
-    addedLines = 0;
-  };
-
-  let applyAndSave = async function () {
-    if (!vscode.workspace.applyEdit(editImages)) {
-      handleError(3);
-      return false;
-    }
-
-    if (!(await vscode.workspace.openTextDocument(memeFileUri)).save()) {
-      handleError(4);
-      return false;
-    }
-  };
-
-  var readDir: [string, vscode.FileType][];
+  var readDir: [string, vscode.FileType][] | null;
   try {
     readDir = await vscode.workspace.fs.readDirectory(folderUri);
   } catch {
-    if (addedLines !== 0) {
-      deleteImages();
-      await applyAndSave();
-    }
+    return true;
+  }
+
+  if (!readDir) {
     return true;
   }
 
   const images: Array<string> = getImages(readDir);
   if (!images || images.length === 0) {
-    if (addedLines !== 0) {
-      deleteImages();
-      await applyAndSave();
-    }
     return true;
   }
 
   const htmlCode: string = imagesToHTML(images);
-  var rangeLines: number;
-
-  if (addedLines === 0) {
-    rangeLines = startPosition + 1;
-  } else {
-    rangeLines = startPosition + addedLines;
+  if (!htmlCode || htmlCode.length === 0) {
+    handleError(3);
+    return false;
   }
 
-  const rangePosition: vscode.Position = new vscode.Position(rangeLines, 0);
-  const replaceRange: vscode.Range = new vscode.Range(editPosition, rangePosition);
-  editImages.replace(memeFileUri, replaceRange, htmlCode);
+  const startPosition: number = 33;
+  const memeFileUri: vscode.Uri = vscode.Uri.parse(memeFile);
+  const editPosition: vscode.Position = new vscode.Position(startPosition, 0);
+  const editImages: vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
+  editImages.insert(memeFileUri, editPosition, htmlCode);
 
-  addedLines = images.length;
+  var flag: boolean = true;
 
-  await applyAndSave();
+  flag = await vscode.workspace.applyEdit(editImages);
+  if (!flag) {
+    handleError(4);
+    return false;
+  }
+
+  flag = await vscode.workspace.saveAll();
+  if (!flag) {
+    handleError(5);
+    return false;
+  }
 
   return true;
 }
 
-function launchApp(): boolean {
+// Launch Live Server for dogeapp
+async function launchApp(): Promise<boolean> {
   const fileUri = vscode.Uri.parse(memeFile);
 
   if (!liveServer) {
@@ -136,7 +116,7 @@ function launchApp(): boolean {
   }
 
   try {
-    vscode.commands.executeCommand("extension.liveServer.goOnline", fileUri);
+    await vscode.commands.executeCommand("extension.liveServer.goOnline", fileUri);
   } catch {
     vscode.window.showWarningMessage('Doge : Could not launch Live Server!');
     return false;

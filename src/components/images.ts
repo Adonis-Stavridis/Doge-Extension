@@ -25,7 +25,7 @@ export function imagesToHTML(images: Array<string>): string {
   var htmlCode: string = "";
 
   images.forEach((image) => {
-    htmlCode += "\t\t\t\t\t<img src=\"../img/" + image + "\" alt=\"" + image + "\">\n";
+    htmlCode += "\t\t\t\t\t\t<img src=\"../img/" + image + "\" alt=\"" + image + "\">\n";
   });
   return htmlCode;
 }
