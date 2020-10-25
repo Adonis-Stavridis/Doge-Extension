@@ -4,11 +4,10 @@ import { extPath, liveServer } from "./extpath";
 import { getImages, imagesToHTML } from "./images";
 import { handleError } from "./error";
 
-// GLOBAL VARIABLES
-const currentPath: string = vscode.workspace.workspaceFolders![0].uri.fsPath;
-const memeFile: string = currentPath + "/.dogeapp/doge.html";
-
+// ===========================================================================
 // EXPORT FUNCTION
+// ===========================================================================
+
 export async function dogeMeme(): Promise<void> {
   var flag: boolean = true;
 
@@ -22,15 +21,21 @@ export async function dogeMeme(): Promise<void> {
     return;
   }
 
-  setTimeout(async function () {
-    flag = await launchApp();
-    if (!flag) {
-      return;
-    }
+  setTimeout(async function (): Promise<void> {
+    await launchApp();
   }, 1000);
 }
 
+// ===========================================================================
+// GLOBAL VARIABLES
+// ===========================================================================
+
+const currentPath: string = vscode.workspace.workspaceFolders![0].uri.fsPath;
+const memeFile: string = currentPath + "/.dogeapp/doge.html";
+
+// ===========================================================================
 // FUNCTIONS
+// ===========================================================================
 
 // Copy template files from extension to workspace
 async function copyTemplate(): Promise<boolean> {
