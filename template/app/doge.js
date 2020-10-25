@@ -2,14 +2,6 @@
 // GLOBAL VARIABLES
 // ===========================================================================
 
-// asset: String {image: Image | text: String, pos: {x: Int, y: Int
-//   },
-//   size: {x: Int, y: Int
-//   },
-//   rot: {deg: Int, flip: Boolean
-//   },
-//   layer: Int
-// }
 var assets = {};
 
 var assetsInfo = {
@@ -254,8 +246,26 @@ function attrToId(object,key) {
   return pairs[object][key];
 }
 
+function checkboxHandle() {
+  var checkbox = document.querySelector("#checkboxInput");
+  var userImages = document.querySelector("div.userImages");
+  var defaultImages = document.querySelector("div.defaultImages");
+
+  if (checkbox.checked) {
+    if (userImages) {
+      userImages.classList.add("separator");
+    }
+    defaultImages.style.display = "block";
+  } else {
+    if (userImages) {
+      userImages.classList.remove("separator");
+    }
+    defaultImages.style.display = "none";
+  }
+}
+
 // ADD TEXT ASSET
-function textAsset(textContent) {}
+function textAsset(textContent) { }
 
 // ===========================================================================
 // EVENTS

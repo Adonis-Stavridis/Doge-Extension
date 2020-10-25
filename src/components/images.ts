@@ -24,8 +24,17 @@ export function getImages(files: [string, vscode.FileType][]): Array<string> {
 export function imagesToHTML(images: Array<string>): string {
   var htmlCode: string = "";
 
+  if (images.length === 0) {
+    return htmlCode;
+  }
+
+  htmlCode += "\t\t\t\t\t\t<div id=\"userImages\" class=\"userImages separator\">\n";
+
   images.forEach((image) => {
-    htmlCode += "\t\t\t\t\t\t<img src=\"../img/" + image + "\" alt=\"" + image + "\">\n";
+    htmlCode += "\t\t\t\t\t\t\t<img src=\"../img/" + image + "\" alt=\"" + image + "\">\n";
   });
+
+  htmlCode += "\t\t\t\t\t\t</div>\n";
+
   return htmlCode;
 }
