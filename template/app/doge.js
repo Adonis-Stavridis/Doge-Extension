@@ -80,6 +80,7 @@ function addImgElements(assetName) {
   });
 
   var imageCopy = new Image();
+  imageCopy.classList.add("icon");
   imageCopy.alt = imgElement.alt;
   imageCopy.src = imgElement.src;
   newImageEdit.appendChild(imageCopy);
@@ -168,12 +169,18 @@ function addImgElements(assetName) {
   editElement.required = true;
   newImageEdit.appendChild(editElement);
 
-  editElement = document.createElement("i");
-  editElement.classList.add("fas");
-  editElement.classList.add("fa-trash");
+  editElement = new Image();
+  editElement.classList.add("trash");
+  editElement.src = "./app/icon/trash.png";
   editElement.addEventListener("click", function (e) {
     removeImage(assetName);
     e.stopPropagation();
+  });
+  editElement.addEventListener("mouseover", function (e) {
+    this.src = "./app/icon/trash-hover.png";
+  });
+  editElement.addEventListener("mouseout", function (e) {
+    this.src = "./app/icon/trash.png";
   });
   newImageEdit.appendChild(editElement);
 

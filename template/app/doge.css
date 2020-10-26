@@ -88,33 +88,20 @@ img {
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.5s;
-  -webkit-transition-property: color;
-  transition-property: color;
+  -webkit-transition-property: background-color;
+  transition-property: background-color;
 }
 
 .buttonIcon {
   max-width: 1em;
   max-height: 1em;
   margin-left: 1em;
-  color: snow;
-}
-
-.renderButton .buttonIcon {
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-transition-duration: 0.5s;
-  transition-duration: 0.5s;
-  -webkit-transition-property: color;
-  transition-property: color;
 }
 
 .renderButton:hover,
 .renderButton:focus,
-.renderButton:active,
-.renderButton:hover .buttonIcon,
-.renderButton:focus .buttonIcon,
-.renderButton:active .buttonIcon {
-  color: gold;
+.renderButton:active {
+  background-color: #787878;
 }
 
 .editorContainer {
@@ -143,7 +130,6 @@ img {
 .imagesDiv {
   padding: 0.5em;
   border: 2px solid cyan;
-  border-radius: 0.2em;
   width: 90%;
   height: 100%;
   overflow: auto;
@@ -228,7 +214,7 @@ img {
   border-left: 0.2em solid dodgerblue;
 }
 
-.imageEdit img {
+.imageEdit img.icon {
   margin-left: 0.5em;
   margin-right: auto;
   width: fit-content;
@@ -299,18 +285,14 @@ img {
   color: #282828;
 }
 
-.imageEdit i {
+.imageEdit img.trash {
+  max-width: 1em;
+  max-height: 1em;
   padding: 0.5em;
-  background-color: transparent;
-  border: none;
-  -webkit-transition-duration: 0.5s;
-  transition-duration: 0.5s;
-  -webkit-transition-property: color;
-  transition-property: color;
 }
 
-.imageEdit i:hover,
-.imageEdit i:focus,
-.imageEdit i:active {
-  color: tomato;
+.imageEdit img.trash:hover,
+.imageEdit img.trash:focus,
+.imageEdit img.trash:active {
+  filter: saturate();
 }
