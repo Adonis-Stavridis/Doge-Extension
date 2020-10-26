@@ -267,6 +267,34 @@ function checkboxHandle() {
   }
 }
 
+var checkboxHandle = (function () {
+  var show = true;
+  var text = document.querySelector(".imagesCheckbox label span#labelText");
+  var image = document.querySelector(".imagesCheckbox label img#labelImage");
+  var userImages = document.querySelector("div.userImages");
+  var defaultImages = document.querySelector("div.defaultImages");
+  
+  return function () {
+    show = !show;
+
+    if (show) {
+      if (userImages) {
+        userImages.classList.add("separator");
+      }
+      defaultImages.style.display = "block";
+      text.innerHTML = "Hide default images";
+      image.src = "./app/icon/hide.png";
+    } else {
+      if (userImages) {
+        userImages.classList.remove("separator");
+      }
+      defaultImages.style.display = "none";
+      text.innerHTML = "Show default images";
+      image.src = "./app/icon/show.png";
+    }
+  };
+})();
+
 // ADD TEXT ASSET
 function textAsset(textContent) { }
 
@@ -289,6 +317,10 @@ document.querySelectorAll(".imagesContainer img").forEach(function (image) {
 
 document.querySelector(".renderButton").addEventListener("click", function () {
   window.alert("RENDER");
+});
+
+document.querySelector(".imagesCheckbox label").addEventListener("click", function () {
+  checkboxHandle();
 });
 
 // ===========================================================================
