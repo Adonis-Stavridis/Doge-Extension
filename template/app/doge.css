@@ -81,11 +81,6 @@ img {
   border-radius: 1em;
   color: snow;
   font-weight: bold;
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.5s;
   -webkit-transition-property: background-color;
@@ -96,6 +91,7 @@ img {
   max-width: 1em;
   max-height: 1em;
   margin-left: 1em;
+  vertical-align: middle;
 }
 
 .renderButton:hover,
@@ -128,9 +124,9 @@ img {
 }
 
 .imagesDiv {
-  padding: 0.5em;
-  border: 2px solid cyan;
-  width: 90%;
+  padding: 0.2em;
+  border: 0.1em solid cyan;
+  width: 95%;
   height: 100%;
   overflow: auto;
 }
@@ -139,7 +135,7 @@ img {
   margin: 0.25em;
   max-width: 3em;
   max-height: 3em;
-  border: solid 0.05em transparent;
+  border: 0.05em solid transparent;
   cursor: pointer;
   -webkit-transition-duration: 0.25s;
   transition-duration: 0.25s;
@@ -160,8 +156,8 @@ img {
   justify-content: right;
   align-items: center;
   flex-direction: row;
-  width: 90%;
-  margin-top: 0.25em;
+  padding: 0.2em;
+  width: 95%;
 }
 
 .imagesCheckbox label {
@@ -169,11 +165,61 @@ img {
   cursor: pointer;
 }
 
+.imagesCheckbox label img {
+  vertical-align: middle;
+}
+
+.textContainer {
+  margin-top: 0.25em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 95%;
+  min-height: 5%;
+  max-height: 5%;
+}
+
+.textContainer input {
+  width: 80%;
+  max-width: 80%;
+  height: 1em;
+  background: transparent;
+  border: 0.2em solid aquamarine;
+  color: snow;
+  padding: 0.5em;
+  overflow: auto;
+}
+
+.textContainer input::-moz-selection {
+  background: #484848;
+}
+
+.textContainer input::selection {
+  background: #686868;
+}
+
+.textContainer button {
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+  height: 2em;
+  border: none;
+  background-color: #585858;
+  color: snow;
+}
+
+.textContainer button:hover,
+.textContainer button:focus,
+.textContainer button:active {
+  background-color: #787878;
+}
+
 .editContainer {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  width: 95%;
   height: 40%;
   max-height: 40%;
   overflow: auto;
@@ -289,10 +335,4 @@ img {
   max-width: 1em;
   max-height: 1em;
   padding: 0.5em;
-}
-
-.imageEdit img.trash:hover,
-.imageEdit img.trash:focus,
-.imageEdit img.trash:active {
-  filter: saturate();
 }
