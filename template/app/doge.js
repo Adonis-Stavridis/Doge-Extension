@@ -356,6 +356,7 @@ function dragStart(e) {
   } else {
     if (currentSelection) {
       unsetSelection(currentSelection);
+      currentSelection = null;
     }
     return false;
   }
