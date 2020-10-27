@@ -88,7 +88,7 @@ async function copyImages(): Promise<boolean> {
     return false;
   }
 
-  const startPosition: number = 33;
+  const startPosition: number = 30;
   const memeFileUri: vscode.Uri = vscode.Uri.parse(memeFile);
   const editPosition: vscode.Position = new vscode.Position(startPosition, 0);
   const editImages: vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
