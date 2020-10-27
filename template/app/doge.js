@@ -135,37 +135,25 @@ function addImgElements(assetName) {
   });
   newImageEdit.appendChild(editElement);
 
-  editElement = document.createElement("span");
-  editElement.textContent = "Rot:";
-  newImageEdit.appendChild(editElement);
+  // editElement = document.createElement("span");
+  // editElement.textContent = "Rot:";
+  // newImageEdit.appendChild(editElement);
 
-  editElement = document.createElement("input");
-  editElement.id = assetName + "-rot";
-  editElement.type = "number";
-  editElement.placeholder = "deg";
-  editElement.value = assets[assetName].rot.deg;
-  editElement.required = true;
-  editElement.addEventListener("input", function () {
-    updateAsset(assetName, "rot", "deg", this.value);
-  });
-  newImageEdit.appendChild(editElement);
+  // editElement = document.createElement("input");
+  // editElement.id = assetName + "-rot";
+  // editElement.type = "number";
+  // editElement.placeholder = "deg";
+  // editElement.value = assets[assetName].rot.deg;
+  // editElement.required = true;
+  // editElement.addEventListener("input", function () {
+  //   updateAsset(assetName, "rot", "deg", this.value);
+  // });
+  // newImageEdit.appendChild(editElement);
 
-  editElement = document.createElement("button");
-  editElement.classList.add("flipButton");
-  editElement.textContent = "Flip";
-  newImageEdit.appendChild(editElement);
-
-  editElement = document.createElement("span");
-  editElement.textContent = "Layer:";
-  newImageEdit.appendChild(editElement);
-
-  editElement = document.createElement("input");
-  editElement.id = assetName + "-layer";
-  editElement.type = "number";
-  editElement.placeholder = "num";
-  editElement.value = assets[assetName].layer;
-  editElement.required = true;
-  newImageEdit.appendChild(editElement);
+  // editElement = document.createElement("button");
+  // editElement.classList.add("flipButton");
+  // editElement.textContent = "Flip";
+  // newImageEdit.appendChild(editElement);
 
   editElement = new Image();
   editElement.classList.add("trash");
@@ -184,6 +172,8 @@ function addImgElements(assetName) {
 
   memeDiv.append(imgElement);
   editContainer.append(newImageEdit);
+
+  updateLayers();
 }
 
 function updateAsset(assetName, object, key, value, inputFlag = false) {
@@ -192,13 +182,26 @@ function updateAsset(assetName, object, key, value, inputFlag = false) {
     assets[assetName][object][key] = intValue;
     const cssAttr = attrToCSS(object, key);
     document.querySelector(".memeDiv img#" + assetName).style[cssAttr] = intValue + "px";
-    
+
     if (inputFlag) {
-      const inputId = attrToId(object,key);
+      const inputId = attrToId(object, key);
       document.querySelector("#editContainer div#" + assetName + " input#" + assetName + "-" + inputId).value = intValue;
     }
   }
 }
+
+function updateLayers() {
+  var assetEdits = editContainer.childNodes;
+
+  for (let i = 1; i < assetEdits.length; i++) {
+    let assetName = assetEdits[i].id;
+    let key = i - 1;
+
+    assets[assetName].layer = key;
+    document.querySelector(".memeDiv img#" + assetName).style.zIndex = key;
+  }
+}
+
 
 function removeImage(assetName) {
   if (currentSelection === assetName) {
@@ -208,6 +211,8 @@ function removeImage(assetName) {
 
   memeDiv.removeChild(document.querySelector("#" + assetName));
   editContainer.removeChild(document.querySelector("#" + assetName));
+
+  updateLayers();
 }
 
 function setSelection(assetName) {
@@ -236,7 +241,7 @@ function attrToCSS(object, key) {
   return pairs[object][key];
 }
 
-function attrToId(object,key) {
+function attrToId(object, key) {
   var pairs = {
     pos: {
       x: "posx",
@@ -251,34 +256,13 @@ function attrToId(object,key) {
   return pairs[object][key];
 }
 
-function checkboxHandle() {
-  var checkbox = document.querySelector(".imagesCheckbox label input#checkboxInput");
-  var text = document.querySelector(".imagesCheckbox label span#checkboxText");
-  var userImages = document.querySelector("div.userImages");
-  var defaultImages = document.querySelector("div.defaultImages");
-
-  if (checkbox.checked) {
-    if (userImages) {
-      userImages.classList.remove("separator");
-    }
-    defaultImages.style.display = "none";
-    text.innerHTML = "Show default images";
-  } else {
-    if (userImages) {
-      userImages.classList.add("separator");
-    }
-    defaultImages.style.display = "block";
-    text.innerHTML = "Hide default images";
-  }
-}
-
 var checkboxHandle = (function () {
   var show = true;
   var text = document.querySelector(".imagesCheckbox label span#labelText");
   var image = document.querySelector(".imagesCheckbox label img#labelImage");
   var userImages = document.querySelector("div.userImages");
   var defaultImages = document.querySelector("div.defaultImages");
-  
+
   return function () {
     show = !show;
 
@@ -312,12 +296,12 @@ document.querySelectorAll(".imagesContainer img").forEach(function (image) {
     const imgAlt = this.getAttribute("alt");
     const imgSrc = this.getAttribute("src");
     const newAssetName = addImgAsset(imgAlt, imgSrc);
-    
+
     if (currentSelection) {
       unsetSelection(currentSelection);
     }
     setSelection(newAssetName);
-  }); 
+  });
 });
 
 document.querySelector(".renderButton").addEventListener("click", function () {
@@ -389,7 +373,7 @@ function dragEnd(e) {
 function drag(e) {
   if (active) {
     e.preventDefault();
-  
+
     if (e.type === "touchmove") {
       currentX = e.touches[0].clientX - initialX;
       currentY = e.touches[0].clientY - initialY;
@@ -421,7 +405,7 @@ let x = 0;
 let y = 0;
 
 // Swap two nodes
-const swap = function(nodeA, nodeB) {
+const swap = function (nodeA, nodeB) {
   const parentA = nodeA.parentNode;
   const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;
 
@@ -433,7 +417,7 @@ const swap = function(nodeA, nodeB) {
 };
 
 // Check if `nodeA` is above `nodeB`
-const isAbove = function(nodeA, nodeB) {
+const isAbove = function (nodeA, nodeB) {
   // Get the bounding rectangle of nodes
   const rectA = nodeA.getBoundingClientRect();
   const rectB = nodeB.getBoundingClientRect();
@@ -445,7 +429,7 @@ const mouseDownHandler = function (e) {
   if (!e.target.classList.contains("imageEdit")) {
     return;
   }
-    
+
   draggingEle = e.target;
 
   // Calculate the mouse position
@@ -469,7 +453,7 @@ const mouseMoveHandler = function (e) {
 
   if (!isDraggingStarted) {
     isDraggingStarted = true;
-    
+
     // Let the placeholder take the height of dragging element
     // So the next element won't move up
     placeholder = document.createElement('div');
@@ -482,7 +466,7 @@ const mouseMoveHandler = function (e) {
 
   // Set position for dragging element
   draggingEle.style.position = 'absolute';
-  draggingEle.style.top = `${e.pageY - y}px`; 
+  draggingEle.style.top = `${e.pageY - y}px`;
   draggingEle.style.left = `${e.pageX - x}px`;
   draggingEle.style.width = elewidth + "px";
 
@@ -493,7 +477,7 @@ const mouseMoveHandler = function (e) {
   // nextEle
   const prevEle = draggingEle.previousElementSibling;
   const nextEle = placeholder.nextElementSibling;
-  
+
   // The dragging element is above the previous element
   // User moves the dragging element to the top
   if (prevEle && isAbove(draggingEle, prevEle)) {
@@ -523,12 +507,15 @@ const mouseUpHandler = function () {
 
   // Remove the placeholder
   if (isDraggingStarted) {
-    placeholder && placeholder.parentNode.removeChild(placeholder);draggingEle.style.removeProperty('top');
-    
+    placeholder && placeholder.parentNode.removeChild(placeholder);
+
+    draggingEle.style.removeProperty('top');
     draggingEle.style.removeProperty('left');
     draggingEle.style.removeProperty('position');
 
     isDraggingStarted = false;
+
+    updateLayers();
   }
 
   x = null;
