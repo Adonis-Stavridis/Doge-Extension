@@ -193,12 +193,11 @@ function updateAsset(assetName, object, key, value, inputFlag = false) {
 function updateLayers() {
   var assetEdits = editContainer.childNodes;
 
-  for (let i = 1; i < assetEdits.length; i++) {
+  for (let i = 0; i < assetEdits.length; i++) {
     let assetName = assetEdits[i].id;
-    let key = i - 1;
 
-    assets[assetName].layer = key;
-    document.querySelector(".memeDiv img#" + assetName).style.zIndex = key;
+    assets[assetName].layer = i;
+    document.querySelector(".memeDiv img#" + assetName).style.zIndex = i;
   }
 }
 
