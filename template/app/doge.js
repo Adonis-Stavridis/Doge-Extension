@@ -534,6 +534,7 @@ const mouseUpHandler = function () {
   x = null;
   y = null;
   elewidth = 0;
+  draggingEle.style.width = null;
   draggingEle = null;
 
   // Remove the handlers of `mousemove` and `mouseup`
