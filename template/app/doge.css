@@ -9,6 +9,7 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   cursor: default;
+  overflow: hidden;
 }
 
 ::-moz-selection {
@@ -335,4 +336,16 @@ img {
   max-width: 1em;
   max-height: 1em;
   padding: 0.5em;
+}
+
+.draggable {
+  user-select: none;
+}
+
+.placeholder {
+  margin-bottom: 0.1em;
+  padding: 0.1em;
+  width: 98%;
+  background-color: #787878;
+  border: 0.1em dashed snow;
 }
