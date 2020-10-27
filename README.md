@@ -1,11 +1,56 @@
-# Doge in Visual Studio Code
+# Doge for Visual Studio Code
 
-This is a cosmetic extension to add Dogelore characters into Visual Studio Code.
+![Visual Studio Marketplace
+Version](https://img.shields.io/visual-studio-marketplace/v/adonis-stavridis.doge?logo=visual-studio-code)
+![Visual Studio Marketplace
+Installs](https://img.shields.io/visual-studio-marketplace/i/adonis-stavridis.doge?logo=visual-studio-code)
+![Visual Studio Marketplace
+Downloads](https://img.shields.io/visual-studio-marketplace/d/adonis-stavridis.doge?logo=visual-studio-code)
+![Visual Studio Marketplace Last
+Updated](https://img.shields.io/visual-studio-marketplace/last-updated/adonis-stavridis.doge?logo=visual-studio-code)
+
+This extension adds Dogelore characters into Visual Studio Code and a feature to
+create memes.
+
+It was initially inspired by the **[doge](https://atom.io/packages/doge)** Atom
+package developped by **tyler0706**!
+
+---
+
+## Features
+
+### Show Dogelore characters on hover
 
 When hovering above the name of the characters in your code, a popup will appear
-with his/her image.
+with the character's image.
 
-Inspired by the **[doge](https://atom.io/packages/doge)** Atom package developped by **tyler0706**!
+<!-- INSERT GIF HERE -->
+
+### Create memes inside your browser
+
+This extension lets you create memes, or in general images, inside your default
+browser. It is a very basic and simple version of a photo editing software. This
+feature also works offline.
+
+To use this feature, you can either :
+
+- Press `Ctrl + E, Ctrl + D` or `Cmd + E, Cmd + D` on Mac.
+- Open the command terminal with `Ctrl + Shift + P` or `Cmd + Shift + P` on Mac)
+  and type the command `Doge`.
+
+This will create a `.dogeapp` folder and a `Doge.md` file inside your current
+workspace / folder. The folder contains all of the code to allow you to use
+the app to create memes, while the file displays how to use the app.
+
+<!-- INSERT GIF HERE -->
+
+**Comment** : the next tool to be implemented in the app will allow adding text
+into the memes.
+
+**Warning** : in order to open the app you need to install the
+`ritwickdey.liveserver` Visual Studio Code extension (available on the
+marketplace, or
+[here](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)).
 
 ---
 

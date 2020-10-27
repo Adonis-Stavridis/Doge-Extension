@@ -43,6 +43,8 @@ async function copyTemplate(): Promise<boolean> {
   const currentPathUri: vscode.Uri = vscode.Uri.parse(currentPath + "/.dogeapp");
   const imgUri: vscode.Uri = vscode.Uri.parse(extPath + "/out/img");
   const currentImgPathUri: vscode.Uri = vscode.Uri.parse(currentPath + "/.dogeapp/app/img");
+  const mdUri: vscode.Uri = vscode.Uri.parse(currentPathUri + "/Doge.md");
+  const currentMdPathUri: vscode.Uri = vscode.Uri.parse(currentPath + "/Doge.md");
 
   try {
     await vscode.workspace.fs.copy(templateUri, currentPathUri, { overwrite: true });
@@ -55,6 +57,15 @@ async function copyTemplate(): Promise<boolean> {
     await vscode.workspace.fs.copy(imgUri, currentImgPathUri, { overwrite: true });
   } catch {
     handleError(2);
+    return false;
+  }
+
+  try {
+    await vscode.workspace.fs.copy(mdUri, currentMdPathUri, { overwrite: true });
+    await vscode.workspace.fs.delete(mdUri);
+    await vscode.commands.executeCommand("markdown.showPreview", currentMdPathUri);
+  } catch {
+    handleError(3);
     return false;
   }
 
@@ -84,7 +95,7 @@ async function copyImages(): Promise<boolean> {
 
   const htmlCode: string = imagesToHTML(images);
   if (!htmlCode || htmlCode.length === 0) {
-    handleError(3);
+    handleError(4);
     return false;
   }
 
@@ -98,13 +109,13 @@ async function copyImages(): Promise<boolean> {
 
   flag = await vscode.workspace.applyEdit(editImages);
   if (!flag) {
-    handleError(4);
+    handleError(5);
     return false;
   }
 
   flag = await vscode.workspace.saveAll();
   if (!flag) {
-    handleError(5);
+    handleError(6);
     return false;
   }
 
