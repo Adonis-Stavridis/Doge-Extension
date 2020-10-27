@@ -304,7 +304,37 @@ document.querySelectorAll(".imagesContainer img").forEach(function (image) {
 });
 
 document.querySelector(".renderButton").addEventListener("click", function () {
-  window.alert("RENDER");
+  var memeCanvas = document.createElement("canvas");
+  var context = memeCanvas.getContext("2d");
+  var assetEdits = editContainer.childNodes;
+
+  memeCanvas.width = memeDiv.clientWidth;
+  memeCanvas.height = memeDiv.clientHeight;
+
+  context.clearRect(0, 0, memeCanvas.width, memeCanvas.height);
+
+  assetEdits.forEach(function (item) {
+    const assetName = item.id;
+
+    var imageObject = assets[assetName].image;
+    const posObject = assets[assetName].pos;
+    imageObject.width = assets[assetName].size.x;
+    imageObject.height = assets[assetName].size.y;
+
+    context.drawImage(imageObject, posObject.x, posObject.y, imageObject.width, imageObject.height);
+  });
+
+  const MIME_TYPE = "image/png";
+  const imgURL = memeCanvas.toDataURL(MIME_TYPE);
+
+  const dlLink = document.createElement("a");
+  dlLink.download = "meme.png";
+  dlLink.href = imgURL;
+  dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+
+  document.body.appendChild(dlLink);
+  dlLink.click();
+  document.body.removeChild(dlLink);
 });
 
 document.querySelector(".imagesCheckbox label").addEventListener("click", function () {
