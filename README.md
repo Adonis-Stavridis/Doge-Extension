@@ -26,8 +26,9 @@ package developped by **tyler0706**!
 - [Installation](#installation)
 - [Known Issues](#known-issues)
 - [Release Notes](#release-notes)
+  - [[1.2.0] - Meme creation feature](#120---meme-creation-feature)
   - [[1.1.0] - Local images](#110---local-images)
-- [Upcoming release](#upcoming-release)
+- [Upcoming releases](#upcoming-releases)
 
 ---
 
@@ -124,6 +125,11 @@ No known issues until now.
 
 ## Release Notes
 
+### [1.2.0] - Meme creation feature
+
+- Implemented a feature to create memes inside your browser
+- Code cleanup
+
 ### [1.1.0] - Local images
 
 - Images are now locally displayed
@@ -131,6 +137,8 @@ No known issues until now.
 
 ---
 
-## Upcoming release
+## Upcoming releases
 
-Next release will allow adding text into memes.
+- Add text into memes
+- Better asset editing (image rotation, flipping, etc...)
+- More mouse and keyboard shortcuts

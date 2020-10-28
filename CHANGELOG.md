@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.2.0] - Meme creation feature
+
+- Implemented a feature to create memes inside your browser
+- Code cleanup
+
 ## [1.1.0] - Local images
 
 - Images are now locally displayed
