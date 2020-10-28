@@ -19,7 +19,7 @@ Visual Studio Code.
 
 The User Interface looks like this :
 
-![Get Started Img](./app/icon/get_started.png)
+![Get Started Img](./.dogeapp/app/icon/get_started.png)
 
 ## Canvas
 
