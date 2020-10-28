@@ -5,8 +5,7 @@
 var assets = {};
 
 var assetsInfo = {
-  imgNumber: 0,
-  textNumber: 0
+  imgNumber: 0
 };
 
 var memeDiv = document.querySelector("#memeDiv");
