@@ -34,5 +34,7 @@ export const dogeCharacters = new Set([
 ]);
 
 export function dogeCharacterMarkdown(name: string, uri: vscode.Uri) {
-  return '![' + name + '](' + uri.fsPath + '/out/img/' + name + '.png "' + name + '")';
+  const uriPath: vscode.Uri = vscode.Uri.joinPath(uri, "/out/img/" + name + ".png");
+
+  return "![" + name + "](" + uriPath.path + " \"" + name + " \")";
 }
