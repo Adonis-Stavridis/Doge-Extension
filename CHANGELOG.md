@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.2.1] - Path hotfix
+
+- Hotfixed a path problem for Windows and Unix Os path compatibility
+
 ## [1.2.0] - Meme creation feature
 
 - Implemented a feature to create memes inside your browser

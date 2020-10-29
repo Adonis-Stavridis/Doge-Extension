@@ -26,6 +26,7 @@ package developped by **tyler0706**!
 - [Installation](#installation)
 - [Known Issues](#known-issues)
 - [Release Notes](#release-notes)
+  - [[1.2.1] - Path hotfix](#121---path-hotfix)
   - [[1.2.0] - Meme creation feature](#120---meme-creation-feature)
   - [[1.1.0] - Local images](#110---local-images)
 - [Upcoming releases](#upcoming-releases)
@@ -124,6 +125,10 @@ No known issues until now.
 ---
 
 ## Release Notes
+
+### [1.2.1] - Path hotfix
+
+- Hotfixed a path problem for Windows and Unix Os path compatibility
 
 ### [1.2.0] - Meme creation feature
 
