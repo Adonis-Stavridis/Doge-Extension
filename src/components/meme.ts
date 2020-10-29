@@ -30,8 +30,8 @@ export async function dogeMeme(): Promise<void> {
 // GLOBAL VARIABLES
 // ===========================================================================
 
-const currentPath: string = vscode.workspace.workspaceFolders![0].uri.fsPath;
-const memeFile: string = currentPath + "/.dogeapp/doge.html";
+const currentPath: vscode.Uri = vscode.workspace.workspaceFolders![0].uri;
+const memeFile: vscode.Uri = vscode.Uri.joinPath(currentPath, "/.dogeapp/doge.html");
 
 // ===========================================================================
 // FUNCTIONS
@@ -39,12 +39,12 @@ const memeFile: string = currentPath + "/.dogeapp/doge.html";
 
 // Copy template files from extension to workspace
 async function copyTemplate(): Promise<boolean> {
-  const templateUri: vscode.Uri = vscode.Uri.parse(extPath + "/out/template");
-  const currentPathUri: vscode.Uri = vscode.Uri.parse(currentPath + "/.dogeapp");
-  const imgUri: vscode.Uri = vscode.Uri.parse(extPath + "/out/img");
-  const currentImgPathUri: vscode.Uri = vscode.Uri.parse(currentPath + "/.dogeapp/app/img");
-  const mdUri: vscode.Uri = vscode.Uri.parse(currentPathUri + "/Doge.md");
-  const currentMdPathUri: vscode.Uri = vscode.Uri.parse(currentPath + "/Doge.md");
+  const templateUri: vscode.Uri = vscode.Uri.joinPath(extPath, "/out/template");
+  const currentPathUri: vscode.Uri = vscode.Uri.joinPath(currentPath, "/.dogeapp");
+  const imgUri: vscode.Uri = vscode.Uri.joinPath(extPath, "/out/img");
+  const currentImgPathUri: vscode.Uri = vscode.Uri.joinPath(currentPath, "/.dogeapp/app/img");
+  const mdUri: vscode.Uri = vscode.Uri.joinPath(currentPathUri, "/Doge.md");
+  const currentMdPathUri: vscode.Uri = vscode.Uri.joinPath(currentPath, "/Doge.md");
 
   try {
     await vscode.workspace.fs.copy(templateUri, currentPathUri, { overwrite: true });
@@ -74,8 +74,7 @@ async function copyTemplate(): Promise<boolean> {
 
 // Copy user images from workspace to doge.html
 async function copyImages(): Promise<boolean> {
-  const imgFolder = currentPath + "/img";
-  const folderUri = vscode.Uri.parse(imgFolder);
+  const folderUri = vscode.Uri.joinPath(currentPath, "/img");
 
   var readDir: [string, vscode.FileType][] | null;
   try {
@@ -100,10 +99,9 @@ async function copyImages(): Promise<boolean> {
   }
 
   const startPosition: number = 30;
-  const memeFileUri: vscode.Uri = vscode.Uri.parse(memeFile);
   const editPosition: vscode.Position = new vscode.Position(startPosition, 0);
   const editImages: vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
-  editImages.insert(memeFileUri, editPosition, htmlCode);
+  editImages.insert(memeFile, editPosition, htmlCode);
 
   var flag: boolean = true;
 
@@ -124,15 +122,13 @@ async function copyImages(): Promise<boolean> {
 
 // Launch Live Server for dogeapp
 async function launchApp(): Promise<boolean> {
-  const fileUri = vscode.Uri.parse(memeFile);
-
   if (!liveServer) {
     vscode.window.showWarningMessage('Doge : Install the [ritwickdey.LiveServer](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VS Code extension to access this feature!');
     return false;
   }
 
   try {
-    await vscode.commands.executeCommand("extension.liveServer.goOnline", fileUri);
+    await vscode.commands.executeCommand("extension.liveServer.goOnline", memeFile);
   } catch {
     vscode.window.showWarningMessage('Doge : Could not launch Live Server!');
     return false;

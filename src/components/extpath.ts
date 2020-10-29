@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
 
-export const extPath: string = vscode.extensions.getExtension("adonis-stavridis.doge")!.extensionPath;
+export const extPath: vscode.Uri = vscode.extensions.getExtension("adonis-stavridis.doge")!.extensionUri;
 
 export const liveServer: vscode.Extension<any> = vscode.extensions.getExtension("ritwickdey.liveserver")!;

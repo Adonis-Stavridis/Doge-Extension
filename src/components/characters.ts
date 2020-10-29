@@ -1,3 +1,5 @@
+import * as vscode from "vscode";
+
 export const dogeCharacters = new Set([
   "abomination",
   "bigbro",
@@ -31,6 +33,6 @@ export const dogeCharacters = new Set([
   "walter"
 ]);
 
-export function dogeCharacterMarkdown(name: string, path: string) {
-  return '![' + name + '](' + path + '/out/img/' + name + '.png "' + name + '")';
+export function dogeCharacterMarkdown(name: string, uri: vscode.Uri) {
+  return '![' + name + '](' + uri.fsPath + '/out/img/' + name + '.png "' + name + '")';
 }
