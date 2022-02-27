@@ -1,16 +1,16 @@
 {
   "name": "doge",
   "displayName": "Doge",
-  "description": "Display Doge and create memes",
-  "icon": "icon.png",
+  "description": "Display Doge inside VSCode",
+  "icon": "assets/icon.png",
   "publisher": "Adonis-Stavridis",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/Adonis-Stavridis/Doge-Extension"
   },
   "engines": {
-    "vscode": "^1.49.0"
+    "vscode": "^1.64.0"
   },
   "categories": [
     "Other"
@@ -18,42 +18,39 @@
   "activationEvents": [
     "*"
   ],
-  "main": "./out/extension.js",
+  "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "doge.createMeme",
-        "title": "Doge"
-      }
-    ],
-    "keybindings": [
-      {
-        "command": "doge.createMeme",
-        "key": "ctrl+E ctrl+D",
-        "mac": "cmd+E cmd+D"
-      }
-    ]
+    "commands": []
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./ && copyfiles -fa src/img/* out/img && copyfiles -fa src/template/* out/template && copyfiles -fa src/template/app/* out/template/app && copyfiles -fa src/template/app/icon/* out/template/app/icon",
+    "vscode:prepublish": "yarn run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.61.0",
     "@types/glob": "^7.1.4",
     "@types/mocha": "^9.0.0",
-    "@types/node": "^16.11.0",
-    "eslint": "^7.32.0",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.33.0",
-    "glob": "^7.2.0",
-    "mocha": "^9.1.2",
-    "typescript": "^4.4.4",
-    "vscode-test": "^1.6.1"
+    "@types/node": "14.x",
+    "@types/vscode": "^1.64.0",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "@vscode/test-electron": "^1.6.2",
+    "copy-webpack-plugin": "^10.2.4",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "glob": "^7.1.7",
+    "mocha": "^9.1.3",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.5.5",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
   },
   "__metadata": {
     "id": "2135aa4b-a81d-463c-9a8c-4425ec86eb65",

@@ -1,12 +1,5 @@
-import * as vscode from "vscode";
+import { dogeHoverProvider } from './extension.utils';
 
-import { dogeCommand } from "./components/command";
-import { dogeHoverProvider } from "./components/hover";
-
-export function activate(context: vscode.ExtensionContext) {
-  dogeCommand(context);
-
+export const activate = (): void => {
   dogeHoverProvider();
-}
-
-export function deactivate() { }
+};

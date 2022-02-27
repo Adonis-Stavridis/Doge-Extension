@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.2.2] - Stable release
+
+- Some performance improvements
+- Meme creation feature is deprecated and has been removed
+
 ## [1.2.1] - Path hotfix
 
 - Hotfixed a path problem for Windows and Unix Os path compatibility
